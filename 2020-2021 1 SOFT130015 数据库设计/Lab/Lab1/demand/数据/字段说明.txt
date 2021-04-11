@@ -1,0 +1,17 @@
+room表：考场信息
+kdno 考点号
+kcno 考场号
+ccno 场次号
+kdname 考点名称
+exptime 预计开考时间
+papername 指定试卷号
+
+
+student表：考生安排
+registno 考号
+name 姓名
+kdno 考点号
+kcno 考场号
+ccno 场次号
+seat 指定座位，0表示不指定座位
+

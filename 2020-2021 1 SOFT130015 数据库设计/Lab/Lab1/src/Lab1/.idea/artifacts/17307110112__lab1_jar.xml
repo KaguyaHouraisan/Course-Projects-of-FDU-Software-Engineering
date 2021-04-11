@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="17307110112-刘人豪-lab1:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/17307110112__lab1_jar</output-path>
+    <root id="archive" name="17307110112-刘人豪-lab1.jar">
+      <element id="module-output" name="Lab1" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/javacsv.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/sqlite-jdbc-3.7.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/mysql-connector-java-5.1.49-bin.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
