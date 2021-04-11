@@ -1,0 +1,12 @@
+known crash input:
+./ls test/abug
+
+1. you can mutate on this known input to uncover more crash inputs
+2. the depth of directory is at most 3
+	such as:
+	aaaaaa/bbbbbbb/ccccccc
+3. the length of very folder/file names is at most 20:
+	you can generate these inputs but it's not neccessary:
+	alkdfagkajfaljgkdjfkajjagl/dkfjdkkfdjkfjkdjfjdkjfdjfkjdjf
+4. you can use c/c++, java, python or any program languages you like
+5. if you use python3, 'runFuzzer.py' may be useful

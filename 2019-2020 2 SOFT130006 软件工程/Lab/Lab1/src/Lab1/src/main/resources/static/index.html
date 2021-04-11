@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Lab1 实验报告</title>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div style="width: 80%; margin:5% 10% 5%">
+            <h1>软件工程 Lab1 实验报告</h1>
+
+            <center>
+                姓名：刘人豪
+                <br>
+                学号：17307110112
+            </center>
+
+            <h2>实验过程</h2>
+
+            <div style="margin-left: 2%">
+                <h3>3.1 查收作业</h3>
+                <div style="margin-left: 2%">
+                对于Git，Java，Maven的安装过程，以及查收作业的过程，在这里就不再赘述了。
+                </div>
+                <br><br>
+            </div>
+
+            <div style="margin-left: 2%">
+                <h3>3.2 创建项目</h3>
+                <div style="margin-left: 2%">
+                    首先，按照Lab1文档中的描述，在华为云中新建「Scrum」项目，并命名为「2020软件工程_Lab1_刘人豪_17307110112」。
+                    <br><br>
+                    将FudanSoft添加进项目中。
+                    <br><br>
+                    <img src="images/001.png" height="80%" width="80%">
+                </div>
+            </div>
+
+            <div style="margin-left: 2%">
+                <h3>3.3 拉取代码</h3>
+                <div style="margin-left: 2%">
+                    按照Lab1文档中的要求，将仓库拉取到本地。
+                    <br><br>
+                    <img src="images/002.png" height="60%" width="60%">
+                </div>
+                <br><br>
+            </div>
+
+            <div style="margin-left: 2%">
+                <h3>3.4 运行项目</h3>
+                <div style="margin-left: 2%">
+                    按照Lab1文档中的要求，采用使用IDE运行的方法。
+                    <br><br>
+                    在IntelliJ IDEA中导入拉取到本地的仓库，<h4 style="color: red">但是Maven并没有自动导入依赖包，并且使用File-Invalidate Caches/Restart并重启计算机不能解决问题。</h4>
+                    <h4 style="color: red">解决方案如下：首先在File-Settings中，搜索“Maven”,然后将Maven home directory从Bundled(Maven 3)更换为如图所示的绝对路径。</h4>
+                    <img src="images/003.png" height="60%" width="60%">
+                    <h4 style="color: red">再在右侧边栏Maven Projects中先使用clean，再使用install，重新安装依赖包，问题解决。</h4>
+                    <img src="images/004.png" height="50%" width="50%">
+                    <h4>经过如上所述的操作后，可以成功运行本程序，此时打开“http://localhost:8080/”，打开页面如下。</h4>
+                    <img src="images/005.png" height="80%" width="80%">
+
+                    <h4 style="color: red">值得注意的是，为了防止因为共用同一台服务器的小组成员，使用maven打包出相同路径相同命名的jar包，使部署时发生覆盖，</h4>
+                    <h4 style="color: red">需要将Lab1/pom.xml文件中的最后一段添加finalName标签，来指定jar包的名称，以避免冲突，如下图所示：</h4>
+                    <img src="images/015.png" height="50%" width="50%">
+                    <h4 style="color: red">最终生成的jar包情况如下：</h4>
+                    <img src="images/016.png" height="50%" width="50%">
+                    <h3 style="color: red">由于此段为后来添加，在下文中仍然采用最初的jar包进行展示。</h3>
+                </div>
+                <br><br>
+            </div>
+
+            <div style="margin-left: 2%">
+                <h3>3.5 DevCloud构建/发布</h3>
+                <div style="margin-left: 2%">
+                    首先，按照TA所指导的步骤，建立主机组和主机。
+                    <br><br>
+                    <img src="images/006.png" height="80%" width="80%">
+                    <img src="images/007.png" height="80%" width="80%">
+                    <br><br>随后在华为云-构建/发布-编译构建中，选择新建编译构建任务，选择Lab1源码仓库，使用Maven模板，jdk-1.8版本完成构建。
+                    <br><br>
+                    <img src="images/008.png" height="80%" width="80%">
+                    <br><br>再在华为云-构建/发布-部署中，选择新建部署任务，选择SpringBoot应用部署模板，将部署步骤调整为如下图所示：
+                    <br><br>
+                    <img src="images/009.png" height="50%" width="50%">
+                    <br><br>在选择部署来源步骤中填入如下设置，也即选择刚才编译构建的文件为软件包：
+                    <br><br>
+                    <img src="images/010.png" height="60%" width="60%">
+                    <br><br>在安装JDK步骤中选择openjdk-1.8.0，在启动SpringBoot服务步骤中，将命令行参数设置为“--server.port=8084”，也即选择8084端口。
+                    <br><br>在URL健康测试步骤中，将测试路径设置为分配的服务器IP及端口，也即“http://114.115.150.198:8084”。
+                    <br><br>
+                    <img src="images/011.png" height="60%" width="60%">
+                    <br><br>点击保存并执行，在弹出的“设定参数并执行”窗口中，选择主机组为之前新建的主机组“HOST”，在spring_path中填入服务器上软件包的绝对路径，也就是“/usr/local/lab1-0.0.1-SNAPSHOT.jar”，
+                    <br><br>在package_url中填入发布仓库中软件包的URL，也即“/cloudbuild-1583483925496-72/20200306.1/lab1-0.0.1-SNAPSHOT.jar”，最后填入服务器访问端口8084。
+                    <br><br>点击执行后，部署成功。
+                    <br><br>
+                    <img src="images/012.png" height="80%" width="80%">
+                    <img src="images/014.png" height="80%" width="80%">
+                    <br><br>
+                    此时，通过IP地址“http://114.115.150.198:8084”访问，页面如下：
+                    <br><br>
+                    <img src="images/013.png" height="80%" width="80%">
+                    <h3 style="color: red">部署完成！</h3>
+                </div>
+                <br><br>
+            </div>
+
+            <h2>实验心得</h2>
+
+            <div style="margin-left: 2%">
+                <div style="margin-left: 2%">
+                    <p>通过这次实验，我对Git，Java的使用进行了复习，同时也对Maven以及SpringBoot框架的使用有了一定的了解。此外，我还初步理解了
+                    如何使用华为云平台编译构建代码并进行部署。</p>
+                    <p>在实验中，我也遇到了一些困难，在上文也对如何解决这些困难作了阐述。相信这些能够帮助我更好地掌握软件工程的学习内容。</p>
+                </div>
+                <br><br>
+            </div>
+        </div>
+    </body>
+</html>
