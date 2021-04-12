@@ -1,0 +1,199 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: #1b2838;
+    color: #acb2b8
+}
+
+header {
+    color: #b8b6b4;
+    height: 10%;
+    background-color: #171a21;
+    display: flex;
+    text-align: center;
+}
+
+nav {
+    margin: auto 3em;
+}
+
+li {
+    display: inline-block;
+}
+
+nav li {
+    padding: 0 1em;
+}
+
+a {
+    color: #b8b6b4;
+    text-decoration:none;
+}
+
+a:hover{
+    color: #87bff2;
+}
+
+nav li a {
+    color: #b8b6b4;
+}
+
+aside {
+    float:right;
+    margin: 1% 5%;
+    width: 30%;
+    background-color: #171a21;
+}
+
+aside a {
+    color: white;
+}
+
+aside img, aside ul {
+    padding: 0;
+    width: 100%;
+}
+
+aside li {
+    display: block;
+    text-align: center;
+    padding: 0.2em 0;
+}
+
+.title, h2 {
+    color: #ebebeb;
+}
+
+.title {
+    margin: 1em 5%;
+    display: inline;
+    display: flex;
+    text-align: center;
+}
+
+.title img {
+    border: #b8b6b4 solid 2px;
+}
+
+.title div {
+    display: inline;
+    padding-left: 1em;
+    margin: auto 0;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.title span {
+    font-weight: normal;
+    font-size: small;
+}
+
+.title .symbol {
+    color: #b8b6b4;
+    font-size: large;
+}
+
+section {
+    margin: 0 5%;
+}
+
+section blockquote {
+    margin: 0;
+    width: 60%;
+    font-size: small;
+    background-color: #171a21;
+    padding: 0.7em;
+    color: #b8b6b4;
+    border-top: 1px solid rgba(85, 125, 171, 0.6)
+}
+
+p small {
+    margin: 0;
+    padding: 0;
+    color: #b8b6b4;
+}
+
+hr {
+    width: 90%;
+    margin: 0 5%;
+    border-width:0;
+    height: 1px;
+    color:rgba(85, 125, 171, 0.6);
+    background-color:rgba(85, 125, 171, 0.6);
+}
+
+.value ul {
+    display: inline-block;
+}
+
+.value {
+    color: #b8b6b4;
+    font-size: small;
+}
+
+.value li {
+    padding: 0.2em 0.6em;
+    background-color: rgba(85, 125, 171, 0.6);
+    border-radius: 3px;
+}
+
+h3 {
+    color: #ebebeb;
+}
+
+h4 {
+    font-weight: normal;
+    color: #ebebeb;
+    margin: 0;
+}
+
+h4 small {
+    color: #56707f;
+}
+
+.comment li {
+    display: block;
+    margin: 1.5em 0;
+}
+
+.active {
+    color:#87bff2;
+}
+
+h1 {
+    margin: 0.5em 2.5em;
+}
+
+input, textarea {
+    padding: 0.5em;
+    margin: 0.5em 0;
+    width: 35%;
+    background-color: #171a21;
+    border: #56707f solid 1px;
+    border-radius: 3px;
+    color: #acb2b8
+}
+
+select {
+    background-color: #171a21;
+    border: #56707f solid 1px;
+    color: #acb2b8
+}
+
+input[type="checkbox"], input[type="radio"] {
+    width: 2em;
+}
+
+input[type="button"],input[type="submit"]  {
+    background-color: #56707f;
+    border: #171a21 solid 1px;
+    width: 4em;
+}
+
+input[type="button"],input[type="submit"],input[type="checkbox"], input[type="radio"], select:hover {
+    cursor: pointer;
+}
+
+textarea {
+    height: 15em;
+}

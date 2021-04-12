@@ -1,0 +1,97 @@
+.content{
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+h1, h2, h3, nav, footer {
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+}
+
+body {
+    font-family: "Lucida Sans", Verdana, Arial, sans-serif;
+    font-size: 100%;
+}
+
+caption {
+    font-weight: bold;
+    background-color: #3399ff;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    font-style: italic;
+}
+
+.table {
+    width: 80%;
+    margin: auto;
+    border: solid 1px #66ffff;
+}
+
+.contact:hover {
+    background-color: yellow;
+}
+
+.changePage{
+    margin-top: 2%;
+    width: 80%;
+}
+
+.changePage ul{
+    margin: 0 auto;
+    width: fit-content;
+    list-style: none;
+}
+
+.changePage ul li{
+    display: inline-block;
+    background: white;
+    color: black;
+    font-weight: bold;
+}
+
+.changePage ul li a{
+    color: black;
+}
+
+.changePage ul li a:hover{
+    color: yellow !important;
+}
+
+.delete {
+    background: black;
+    color: white;
+    height: 40px;
+    font-size: 23px;
+}
+
+.delete a {
+    color: white;
+}
+
+.delete:hover {
+    background: yellow;
+    color: black;
+}
+
+.delete a:hover {
+    color: black;
+}
+
+.checkOut {
+    position: relative;
+    left: 40%;
+    width: 20%;
+    height: 48px;
+    margin-bottom: 3%;;
+    background: black;
+    color: white;
+    font-size: 23px;
+}
+
+.checkOut:hover {
+    background: yellow;
+    color: black;
+}

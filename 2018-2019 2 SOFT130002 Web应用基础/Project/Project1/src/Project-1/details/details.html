@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../images/icon.jpg">
+    <link rel="stylesheet" href="../css/config.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="./details.css">
+    <title>Art Store：详情</title>
+</head>
+
+<body>
+    <!-- 最外层的盒子 -->
+    <div class="container">
+        <!-- 导航栏 -->
+        <div class="header">
+            <div class="title" id="title" >
+                <div id="logo">
+                    <a href="../index/index.html">
+                        <img  src="../images/icon.jpg" width="80vh" height="44vh">
+                    </a>
+                </div>
+
+                <div id="name">
+                    <p>聖翔音楽学園</p>
+                </div>
+
+                <div id="slogan">
+                    <p ><br>Position zero，this is tendomaya!</p>
+                </div>
+
+                <ul class="header-choice" id="navbar">
+                    <li>
+                        <a href="../index/index.html" id="home" title="首页">首页</a>
+                    </li>
+                    <li>
+                        <a href="../search/search.html" id="search" title="搜索">搜索</a>
+                    </li>
+                    <li>
+                        <a href="../details/details.html" id="details"  title="详情">详情</a>
+                    </li>
+                    <li class="login-not">
+                        <a href="../login/login.html" class="login-not-show">注册/登录</a>
+                    </li>
+                    <li class="login-success">
+                        <a href="javascript:" class="login-success-username">用户名</a>
+                        <a href="javascript:" class="login-out">退出<i class="icon iconfont icon-enter icon-login-out"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footstep">
+            <ul class="footstep-table">
+                <li class="footstep-title">足迹：</li>
+                <li class="footstep-box">
+                    <a href="../index/index.html" >首页</a>
+                </li>
+                <li class="footstep-pain"> -> </li>
+                <li class="footstep-box">
+                    <a href="../details/details.html">详情</a>
+                </li>
+            </ul>
+        </div>
+
+        <form class="search" action="../search/search.html" method="post">
+            <input type="search" placeholder="Search titles" class="search-place">
+
+            <button type="submit" value="Search">Search</button>
+
+            <select name="Actions">
+                <option selected>Actions</option>
+                <option>Archive</option>
+                <option>Delete</option>
+            </select>
+
+            <button type="submit" value="Apply">Apply</button>
+
+            <select name="Genre">
+                <option selected>Genre</option>
+                <option>Baroque</option>
+                <option>Mannerism</option>
+                <option>Neo-Classical</option>
+                <option>Realism</option>
+                <option>Romanticism</option>
+            </select>
+
+            <button type="submit" value="Filter">Filter</button>
+        </form>
+
+        <div>
+            <article class="right">
+                <div class="itemInfo">
+                    <div class="itemImgBox">
+                        <img src="../images/001080.jpg">
+                    </div>
+
+                    <ul>
+                        <li class="itemTitle">Circus Player's House</li>
+                        <li id="authorToSearchPage">作者：<a href="../search/search.html">Pablo Picasso</a></li>
+                        <li class="evenLi">价格: $3,200,000</li>
+                        <li class="evenLi">风格: Cubism</li>
+                        <li class="evenLi">尺寸: 100.5 cm × 73 cm</li>
+                        <li class="evenLi">年份: 1905</li>
+                        <li class="evenLi">时代: Alfonso XIII</li>
+                        <li class="evenLi">热度: ★★★☆☆</li>
+                        <li>This "Circus Player's House" is an important work painted by Picasso in the "Rose Period" of his
+                            artistic career in 1905. The image of the clown has been loved by Picasso since then. Many people
+                            believe that the clown is full of Picasso's own portrayal. There are six people in The Circus
+                            Actors'House. Four of the men are the four core representatives of the Picasso Gang: Picasso,
+                            Apolinel, Jacob and Salmon. The first clown, with his back to the audience, The first clown, with
+                            his back to the audience, can see that this is Picasso's figure, while Apolinel appears as a clown
+                            and wise man, which shows his position in Picasso's heart. The woman in the lower right corner of
+                            the picture is like an illusion. </li>
+                    </ul>
+                </div>
+            </article>
+
+            <button class="addToCar" onclick="globalTips('加入成功')">加入购物车</button>
+        </div>
+
+        <!-- 页面底部 -->
+        <a href="https://github.com/KaguyaHouraisan/">
+            <img id="designer"  src="../images/footer.png" width="95%">
+        </a>
+    </div>
+
+    <!-- 页面脚本文件 -->
+    <script src="../js/common.js"></script>
+</body>
+</html>

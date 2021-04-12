@@ -1,0 +1,30 @@
+/* 初始化页面 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 500ms ease-in-out;
+}
+
+html,body{
+    height: 100%;
+}
+
+a{
+    color: rgb(100, 100, 100);
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+button, input{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.container{
+    height: 100%;
+}

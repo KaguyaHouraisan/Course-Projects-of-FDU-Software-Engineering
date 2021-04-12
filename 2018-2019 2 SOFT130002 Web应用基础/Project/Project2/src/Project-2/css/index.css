@@ -1,0 +1,29 @@
+/* 3d旋转 */
+
+/* 舞台 */
+.stage{
+    perspective: 2000px;/* 视距 */
+}
+
+/* 容器 */
+.stage .box{
+    width: 25%;
+    height: 600px;
+    margin: 100px auto;
+    transform-style: preserve-3d; /* 3D声明 */
+    transition: all 0.5s ease-in;
+}
+
+.img-item {
+    position: absolute;
+    width: 100%;
+    height: 600px;
+    transition: all 0.5s ease-in;
+    overflow: hidden;
+}
+
+.img-item-0 {
+    width: 100%;
+    height: 300px !important;
+    transition: all 0.5s ease-in;
+}

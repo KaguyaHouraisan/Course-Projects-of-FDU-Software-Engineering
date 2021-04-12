@@ -1,0 +1,145 @@
+.content{
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+/* 3d旋转 */
+
+/* 舞台 */
+.stage{
+    perspective: 2000px;/* 视距 */
+}
+
+/* 容器 */
+.stage .box{
+    width: 20%;
+    height: 200px;
+    margin: 100px auto;
+    transform-style: preserve-3d; /* 3D声明 */
+    transition: all 0.5s ease-in;
+}
+
+.img-item {
+    position: absolute;
+    width: 100%;
+    transition: all 0.5s ease-in;
+}
+
+#show {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+#show_pic_1 {
+    text-align: center;
+    padding: 10vh;
+    width: 33.3%;
+    float: left;
+}
+
+#show_pic_2 {
+    text-align: center;
+    padding: 10vh;
+    width: 33.3%;
+    float: left;
+}
+
+#show_pic_3 {
+    text-align: center;
+    padding: 10vh;
+    width: 33.3%;
+    float: left;
+}
+
+#show_title_1 {
+    float:left;
+    width: 33.3%;
+    text-align: center;
+}
+
+#show_title_2 {
+    float:left;
+    width: 33.3%;
+    text-align: center;
+}
+
+#show_title_3 {
+    float:left;
+    width: 33.3%;
+    text-align: center;
+}
+
+#show_painter_1 {
+    float:left;
+    width: 33.3%;
+    text-align: center;
+}
+
+#show_painter_2 {
+    float:left;
+    width: 33.3%;
+    text-align: center;
+}
+
+#show_painter_3 {
+    float:left;
+    width: 33.3%;
+    text-align: center;
+}
+
+#show_intr_1 {
+    text-align: justify;
+    margin: 2vh 0;
+    width: 33.3%;
+    float: left;
+    padding: 0.1vh 2vw;
+}
+
+#show_intr_2 {
+    text-align: justify;
+    margin: 2vh 0;
+    width: 33.3%;
+    float: left;
+    padding: 0.1vh 2vw;
+}
+
+#show_intr_3 {
+    text-align: justify;
+    margin: 2vh 0;
+    width: 33.3%;
+    float: left;
+    padding: 0.1vh 2vw;
+}
+
+#learn_more_1 {
+    float: left;
+    text-align: center;
+    width: 33.3%;
+}
+
+#learn_more_1:hover {
+    background-color: yellow;
+}
+
+#learn_more_2 {
+    float: left;
+    text-align: center;
+    width: 33.3%;
+}
+
+#learn_more_2:hover {
+    background-color: yellow;
+}
+
+#learn_more_3 {
+    float: left;
+    text-align: center;
+    width: 33.3%;
+}
+
+#learn_more_3:hover {
+    background-color: yellow;
+}

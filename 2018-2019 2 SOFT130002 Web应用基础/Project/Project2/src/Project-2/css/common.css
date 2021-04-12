@@ -1,0 +1,244 @@
+/******* 页面公有的样式 *******/
+/* 遮罩层 */
+.global-mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: white;
+    opacity: .7;
+}
+
+/* 弹窗样式 */
+.global-tips{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 14px;
+    color: white;
+    background: rgba(0,0,0,.8);
+    border-radius: 10px;
+    z-index: 99;
+}
+
+/* loading样式 */
+@keyframes global-loading {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes global-loading {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.global-loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.global-loading div {
+    -webkit-animation: global-loading 1s linear infinite;
+    animation: global-loading 1s linear infinite;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 0 0 #1aa9e1;
+    -webkit-transform-origin: 30px 32px;
+    transform-origin: 30px 32px;
+}
+
+#name {
+    font-size: 2.2vw;
+    font-style: italic;
+    color:white;
+    width: 16.66%;
+    text-align: center;
+}
+
+#slogan {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    width: 41.66%;
+    height: 10vh;
+    font-size: 1vw;
+    color: rgb(255, 255, 255);
+}
+
+.header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    float: right;
+    width: 41.66%;
+    height: 12vh;
+    display: flex;
+}
+
+.header li a {
+    display: block;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 1vw;
+    float: right;
+    padding: 0.8vw 0.4vh;
+    text-decoration: none;
+    width: 6vw
+}
+
+/*鼠标移动到选项上修改背景颜色 */
+.header li a:hover {
+    background-color: rgb(87, 83, 83);
+}
+
+img:hover {
+    transform: scale(1.1);
+    transition: all .5s ease-in;
+}
+
+#logo {
+    text-align: center;
+}
+
+.header-choice .login-not,
+.header-choice .login-success{
+    display: none;
+    transition: all 10s ease-in-out;
+}
+
+.footstep {
+    height: 5%;
+}
+
+.footstep-box {
+    color: gray;
+    display: block;
+    text-align: center;
+    font-size: 1vw;
+    float: left;
+    padding: 0.8vw 0.4vh;
+    text-decoration: none;
+    width: 3vw
+}
+
+.footstep-homepage {
+    color: gray;
+    display: block;
+    text-align: center;
+    font-size: 1vw;
+    float: left;
+    padding: 0.8vw 0.4vh;
+    text-decoration: none;
+    width: 5vw
+}
+
+.footstep-title {
+    color: gray;
+    display: block;
+    text-align: center;
+    font-size: 1vw;
+    float: left;
+    padding: 0.8vw 0.2vh;
+    text-decoration: none;
+    width: 4vw
+}
+
+.footstep-pain {
+    color: gray;
+    display: block;
+    text-align: center;
+    font-size: 1vw;
+    float: left;
+    padding: 0.8vw 0.2vh;
+    text-decoration: none;
+    width: 2vw
+}
+
+.footstep-box a:hover {
+    color: black;
+    background-color: yellow;
+}
+
+.footstep-homepage a:hover {
+    color: black;
+    background-color: yellow;
+}
+
+.changePage ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    float: right;
+    width: 41.66%;
+    height: 12vh;
+    display: flex;
+}
+
+.changePage li a {
+    display: block;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 1vw;
+    float: right;
+    padding: 0.8vw 0.4vh;
+    text-decoration: none;
+    width: 6vw
+}
+
+/*鼠标移动到选项上修改背景颜色 */
+.changePage li a:hover {
+    background-color: rgb(87, 83, 83);
+}
+
+/*搜索栏*/
+.search .search-place {
+    background-color: white;
+    border: solid 1px #66ffff;
+}
+
+.search button {
+    height: 20px;
+    width: 60px;
+}
+
+.search button:hover {
+    background: yellow;
+}
+
+.search {
+    background-color: #e6ffff;
+    border: solid 1px #66ffff;
+    width: 80%;
+    margin: 5px auto;
+    padding: 10px;
+}

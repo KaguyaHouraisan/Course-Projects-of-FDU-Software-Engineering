@@ -1,0 +1,81 @@
+/* general text formatting */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+
+p, h1, h2, h3, ul, li, body {
+    padding: 0;
+    margin: 0;    
+}
+
+
+h1, h2, h3, nav, footer {
+ font-family: Lobster, Cambria, "Times New Roman", serif;
+}
+body {
+   font-family: "Open Sans", Verdana, Arial, sans-serif;
+   font-size: 100%;
+   background-color: #E8EAF6;
+}
+header {
+    padding: 15px;
+    width: auto; 
+    margin: 0 0;
+    background-color: #303F9F;   
+    color: #FAFAFA;
+    height: 30px;
+}
+header h2 {    
+    float: left;
+    font-size: 22pt;  
+    margin-left:10px;
+}
+header nav {
+     float: right;  
+    margin: 10px 15px 10px 10px;
+    top: 5px;
+}
+
+main {
+    margin: 20px 20px;
+}
+
+#featured {
+    margin: 0 2px;
+    border: solid 1px #ccc; 
+    padding: 8px 5px 3px 9px;
+    width: 646px;
+    background-color: #FAFAFA;
+}
+
+#featured figcaption {
+    position: absolute;
+    top: 476px;
+    left: 32px;
+    width: 636px;
+    height: 70px;
+    background-color: floralwhite;
+    font-family: 'Open Sans', Verdana, Arial, sans-serif;
+    font-size: 150%;
+    font-weight: bold;
+    opacity: 0;
+    padding: 22px 2px 2px 2px;
+    text-align: center;
+    display: block;
+}
+
+#thumbnails img {
+    width: 116px;   
+    height: 116px;
+    border: solid 1px #ccc;
+    padding: 4px;
+    margin: 5px 2px;
+    background-color: #FAFAFA;
+}
+
+#thumbnails img:hover {
+    transform: scale(1.1);
+    transition-duration: 300ms;
+    cursor: pointer;
+}
+

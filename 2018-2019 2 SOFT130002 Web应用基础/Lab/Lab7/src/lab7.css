@@ -1,0 +1,82 @@
+main {
+    margin: 30px 30px;
+    font-family: "Open Sans",Arial, sans-serif;
+    font-size: 10pt;    
+}
+
+header {
+     background-color: #F5F5F5;   
+    margin: 5px 30px;
+    
+}
+h1 {
+    font-family: 'Merriweather', "Times New Roman", serif;
+    font-size: 36px;
+    padding: 5px;
+    color: #5D4037;
+}
+
+
+#imgManipulated {
+    margin: 0;
+    float: left;
+}
+
+.sliders { width: 250px; }
+
+#sliderBox label {
+    display: block;
+    width: 250px; 
+    float: left;
+    
+}
+#sliderBox p {
+
+}
+#sliderBox {
+    margin: 0;
+    border: solid 1px #ccc; 
+    padding: 10px;
+    width: 300px;  
+    float: left;
+    margin-right: 10px;
+    background-color: white;
+
+}
+button {
+    background-color: #EF6C00;
+    color: white;
+    border: 0;
+    padding: 5px 10px;
+}
+
+figcaption {
+    background-color: white;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+
+#thumbBox {
+    float: left;
+    border: solid 1px #ccc; 
+    padding: 15px;    
+    margin-left: 10px;
+    background-color: white;
+}
+#thumbBox div {
+     margin-top: 5px;
+     margin-bottom: 15px;   
+}
+
+.tiled {
+    background-image:url(../images/stripes.jpg);
+    background-repeat:repeat; 
+}
+
+/* temp tester 
+#imgManipulated img {
+   filter: opacity(62%) brightness(50%) contrast(50%);   
+-webkit-filter: opacity(62%) brightness(50%) contrast(50%);  
+}
+*/

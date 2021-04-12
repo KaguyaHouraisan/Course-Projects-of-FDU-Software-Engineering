@@ -1,0 +1,5 @@
+#Custom File Not Found
+ErrorDocument 404 /includes/errors/404.php
+
+# Prevent Directory File Listing
+IndexIgnore *

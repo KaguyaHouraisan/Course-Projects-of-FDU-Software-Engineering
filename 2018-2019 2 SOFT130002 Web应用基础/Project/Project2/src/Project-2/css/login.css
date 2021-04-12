@@ -1,0 +1,258 @@
+body{
+    width: 100%;
+    height: 100%;
+    background: url('../resources/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/***************** 登录部分居中显示 **************/
+.middle-box{
+    /* 弹性布局，将子元素垂直水平居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 固定定位，利用translate属性，将盒子垂直水平居中在页面 */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    width: 400px;
+    height: 600px;
+    box-shadow: 0 0 10px rgb(100,100,100);
+    background: rgba(248,248,248, .7);
+}
+
+.right-box{
+    /* 弹性布局，将子元素垂直水平居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 固定定位，利用translate属性，将盒子垂直水平居中在页面 */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(50%, -50%);
+    -webkit-transform: translate(50%, -50%);
+    -ms-transform: translate(50%, -50%);
+    width: 400px;
+    height: 600px;
+    box-shadow: 0 0 10px rgb(100,100,100);
+    background: rgba(248,248,248, .7);
+}
+
+.left-box{
+    /* 弹性布局，将子元素垂直水平居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 固定定位，利用translate属性，将盒子垂直水平居中在页面 */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-150%, -50%);
+    -webkit-transform: translate(-150%, -50%);
+    -ms-transform: translate(-150%, -50%);
+    width: 400px;
+    height: 600px;
+    box-shadow: 0 0 10px rgb(100,100,100);
+    background: rgba(248,248,248, .7);
+}
+
+.login-box{
+    width: 90%;
+}
+
+.login-box .title{
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.login-box .title .icon-logo{
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    font-size: 80px;
+    color: #1aa9e1;
+    -webkit-animation: logoRotate 10s linear infinite;
+    animation: logoRotate 10s linear infinite;
+}
+
+/* logo旋转的动画样式 */
+@keyframes logoRotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes logoRotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/* 输入框样式 */
+.login-box .login-input {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+    height: 40px;
+    width: 100%;
+}
+
+.login-box .login-input input {
+    width: 100%;
+    height: 100%;
+    color: rgb(26, 129, 225);
+    text-indent: 30px;
+    border-bottom: 1px solid rgb(150,150,150);
+}
+
+.login-input textarea {
+    width: 100%;
+    height: 100%;
+    color: rgb(26, 129, 225);
+    text-indent: 30px;
+    border: 0 solid;
+    background: transparent;
+}
+
+.login-box .login-input-re {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+    height: 40px;
+    width: 100%;
+}
+
+.login-box .login-input-re input {
+    width: 100%;
+    height: 100%;
+    color: rgb(26, 129, 225);
+    text-indent: 30px;
+    border-bottom: 1px solid rgb(150,150,150);
+}
+
+.login-box .login-input-email {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+    height: 40px;
+    width: 100%;
+}
+
+.login-box .login-input-email input {
+    width: 100%;
+    height: 100%;
+    color: rgb(26, 129, 225);
+    text-indent: 30px;
+    border-bottom: 1px solid rgb(150,150,150);
+}
+
+.login-box .login-input-place {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+    height: 40px;
+    width: 100%;
+}
+
+.login-box .login-input-place input {
+    width: 100%;
+    height: 100%;
+    color: rgb(26, 129, 225);
+    text-indent: 30px;
+    border-bottom: 1px solid rgb(150,150,150);
+}
+
+.icon-input{
+    position: absolute;
+    top: 50%;
+    color: rgb(26, 129, 225);
+    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+}
+
+/* 登录注册按钮 */
+.login-box .login-bt{
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    color: white;
+    background: rgb(26, 129, 225);
+    font-size: 18px;
+    letter-spacing: 4px;
+}
+
+/* 更多里面的样式 */
+.login-box .login-more{
+    display: flex; /* 弹性布局 */
+    align-items: center; /* 垂直居中 */
+    height: 40px;
+    font-size: 14px;
+    color: rgb(100,100,100);
+    cursor: pointer;
+}
+
+.login-box .login-more .icon-select{
+    padding: 0 2px;
+    font-size: 16px;
+}
+
+.login-box .login-more .remember{
+    flex: 1; /* 将剩下的空间分成一份，并占据这个空间 */
+}
+
+/* 改变按钮状态字体样式 */
+.login-box .type-text{
+    font-size: 13px;
+    color: rgb(100,100,100);
+}
+
+.login-box .login-type{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: rgba(248,248,248, .5);
+    border-top: 1px solid rgb(220,220,220);
+}
+
+.login-box .login-change{
+    color: #1aa9e1;
+    cursor: pointer;
+}
+
+button, input{
+    border: none;
+    background: none;
+    cursor: pointer;
+}

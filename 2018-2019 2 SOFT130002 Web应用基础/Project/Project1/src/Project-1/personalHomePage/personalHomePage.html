@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../images/icon.jpg">
+    <link rel="stylesheet" href="../css/config.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="./personalHomePage.css">
+    <title>Art Store：个人主页</title>
+</head>
+
+<body>
+    <!-- 最外层的盒子 -->
+    <div class="container">
+        <!-- 导航栏 -->
+        <div class="header">
+            <div class="title" id="title" >
+                <div id="logo">
+                    <a href="../index/index.html">
+                        <img  src="../images/icon.jpg" width="80vh" height="44vh">
+                    </a>
+                </div>
+
+                <div id="name">
+                    <p>聖翔音楽学園</p>
+                </div>
+
+                <div id="slogan">
+                    <p ><br>Position zero，this is tendomaya!</p>
+                </div>
+
+                <ul class="header-choice" id="navbar">
+                    <li>
+                        <a href="../index/index.html" id="home" >首页</a>
+                    </li>
+                    <li>
+                        <a href="../search/search.html" id="search" title="搜索">搜索</a>
+                    </li>
+                    <li>
+                        <a href="../details/details.html" id="details"  title="详情">详情</a>
+                    </li>
+                    <li class="login-not">
+                        <a href="../login/login.html" class="login-not-show">注册/登录</a>
+                    </li>
+                    <li class="login-success">
+                        <a href="javascript:" class="login-success-username">用户名</a>
+                        <a href="javascript:" class="login-out">退出<i class="icon iconfont icon-enter icon-login-out"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footstep">
+            <ul class="footstep-table">
+                <li class="footstep-title">足迹：</li>
+                <li class="footstep-box">
+                    <a href="../index/index.html" >首页</a>
+                </li>
+                <li class="footstep-pain"> -> </li>
+                <li class="footstep-homepage">
+                    <a href="../personalHomePage/personalHomePage.html">个人主页</a>
+                </li>
+            </ul>
+        </div>
+
+        <form class="search" action="../search/search.html" method="post">
+            <input type="search" placeholder="Search titles" class="search-place">
+
+            <button type="submit" value="Search">Search</button>
+
+            <select name="Actions">
+                <option selected>Actions</option>
+                <option>Archive</option>
+                <option>Delete</option>
+            </select>
+
+            <button type="submit" value="Apply">Apply</button>
+
+            <select name="Genre">
+                <option selected>Genre</option>
+                <option>Baroque</option>
+                <option>Mannerism</option>
+                <option>Neo-Classical</option>
+                <option>Realism</option>
+                <option>Romanticism</option>
+            </select>
+
+            <button type="submit" value="Filter">Filter</button>
+        </form>
+
+        <div class="content">
+            <div class="left">
+                <ul>
+                    <li><h2>个人信息</h2></li>
+                    <li class="evenLi">用户：TEST001</li>
+                    <li class="evenLi">电话：12345678910</li>
+                    <li class="evenLi">邮箱：17307@qq.com</li>
+                    <li class="evenLi">地址：Room 606, Building 20</li>
+                    <li class="evenLi">余额：$1,100,000</li>
+                </ul>
+
+                <button class="payment" onclick="globalTips('充值成功')">充值</button>
+            </div>
+
+            <div class="right">
+                <button class="toCart"><a href="../shoppingCart/shoppingCart.html">Open My Shopping Cart</a></button>
+
+                <div id="right_1" class="rightDiv">
+                    <h2>我上传的艺术品：</h2>
+
+                    <table>
+                        <tr>
+                            <th scope="col">商品名称</th>
+                            <th scope="col">商品作者</th>
+                            <th scope="col">商品描述</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col">The Old Guitarist</th>
+                            <th scope="col">Pablo Picasso</th>
+                            <th scope="col">The Old Guitarist was painted in 1903. The owner of the painting was a close friend of Picasso who had just committed suicide.</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col">Circus Player's House</th>
+                            <th scope="col">Pablo Picasso</th>
+                            <th scope="col">This "Circus Player's House" is an important work painted by Picasso in the "Rose Period" of his artistic career in 1905.  </th>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="right_2" class="rightDiv">
+                    <h2>我购买的艺术品：</h2>
+
+                    <table>
+                        <tr>
+                            <th scope="col">订单编号</th>
+                            <th scope="col">商品名称</th>
+                            <th scope="col">订单时间</th>
+                            <th scope="col">订单金额</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col">2019031220100055</th>
+                            <th scope="col">The Old Guitarist</th>
+                            <th scope="col">2019.3.12 20:10</th>
+                            <th scope="col">$3,330,000</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col">2019031408270132</th>
+                            <th scope="col">Circus Player's House</th>
+                            <th scope="col">2019.3.14 8:27</th>
+                            <th scope="col">$3,200,000</th>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="right_3" class="rightDiv">
+                    <h2>我卖出的艺术品：</h2>
+
+                    <table>
+                        <tr>
+                            <th scope="col">订单编号</th>
+                            <th scope="col">商品名称</th>
+                            <th scope="col">订单时间</th>
+                            <th scope="col">订单金额</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col">2019031220100055</th>
+                            <th scope="col">The Old Guitarist</th>
+                            <th scope="col">2019.3.12 20:10</th>
+                            <th scope="col">$3,330,000</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col">2019031408270132</th>
+                            <th scope="col">Circus Player's House</th>
+                            <th scope="col">2019.3.14 8:27</th>
+                            <th scope="col">$3,200,000</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页面底部 -->
+        <a href="https://github.com/KaguyaHouraisan/">
+            <img id="designer"  src="../images/footer.png" width="95%">
+        </a>
+    </div>
+
+    <!-- 页面脚本文件 -->
+    <script src="../js/common.js"></script>
+</body>
+</html>

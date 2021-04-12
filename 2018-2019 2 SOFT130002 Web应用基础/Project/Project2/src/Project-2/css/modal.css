@@ -1,0 +1,39 @@
+.modal-container {
+    position: fixed;
+    background-color: #fff;
+    width: 70%;
+    max-width: 700px;
+    left: 50%;
+    padding: 20px;
+    border-radius: 5px;
+
+    -webkit-transform: translate(-50%, -300%);
+    -ms-transform: translate(-50%, -300%);
+    transform: translate(-50%, -300%);
+
+    -webkit-transition: -webkit-transform 200ms ease-out;
+    transition: transform 200ms ease-out;
+}
+
+.modall:before {
+    content: "";
+    position: fixed;
+    display: none;
+    background-color: rgba(0,0,0,.7);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.modall:target:before {
+    display: block;
+}
+
+.modall:target .modal-container {
+    top: 10%;
+
+    -webkit-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
