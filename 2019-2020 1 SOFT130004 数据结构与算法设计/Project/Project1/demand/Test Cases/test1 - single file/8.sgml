@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.x hytime//EN"
+[
+<!ENTITY worldweb SYSTEM "worldweb.gif" NDATA GIF>
+]>
+<HTML><HEAD><TITLE>SGML on the Web</TITLE></HEAD>
+<BODY><DIV1><H1>Welcome to SGML on the Web</H1><DIV2><P ID="LRGPRNT2"><I>Note:</I> As so often on the World Wide Web, our construction crew is still busy here; please be understanding about  lost or unfinished links.
+Visit often, though, as we're always adding new material.</P>
+<P>This page acts as a Home Page for SGML on the Web, including:</P>
+<UL><LI ID="POINTERS"><A XREF="resources">pointers to SGML resources and events,</A></LI>
+<LI><A XREF="sqdemos">connections to tutorials and demos</A>, and</LI>
+<LI>information about <A XREF="whatsnew">new or changed sites offering SGML documents</A> on the World Wide Web, updated weekly.
+</LI></UL></DIV2><DIV2><H2>Administrative Matters</H2>
+<UL><LI><B>To Submit an Entry to SGML on the Web</B>, send mail to <I>websgml@sq.com</I> with <I>New SGML on the Web</I> in the Subject line, and we'll mail you a short form to complete.</LI>
+<LI><A XREF="aboutme"><B>About the NCSA/SoftQuad SGML on the Web Page</B></A>
+</LI>
+<LI><P><B>To Submit Reader Comments.</B> We appreciate any comments about the usefulness of these listings -- please send them to <I>websgml-comments@sq.com</I>. 
+These comments may be published as part of the SGML on the Web Page.</P></LI></UL></DIV2><DIV2><H2>What Is This All About?</H2>
+<P>Winner of the most frequently asked question award goes to Georges Meteskey of New York, NY, USA, who asks: <EM>"Why haven't I heard about this SGML stuff before?"</EM> Well, George, perhaps you were asleep during that lecture. </P>
+<P>Truth be told, <B>SGML is a well-guarded secret</B>; it is an official international standard for the electronic interchange of information that has been adopted by the European Community, the governments of the US and Canada, the aerospace, automotive, semiconductor, defense and other industries. But somehow, despite all this acceptance, it remains one of the quietest revolutions around. Granted, Georges, it has acquired a reputation as being somewhat complicated, but the success of HTML -- which is in fact a simple application of SGML -- shows that anyone can play.</P></DIV2><DIV2><H2>SGML Available on the Web Today</H2><DIV3><!--Note: the first anchor here is called WHATSNEW in the NAME attribute--><H3><A HREF="http://stardust.jpl.nasa.gov/mgddf/guidesgml.html" NAME="whatsnew">Guide to Magellan Image Interpretation</A></H3>
+<H4>Jet Propulsion Laboratory (NASA), Pasadena, California, USA</H4>
+<P>This guide to interpreting Venus image data collected by the Magellan
+spacecraft is available here as the first JPL-produced SGML document.</P><P><A HREF="http://stardust.jpl.nasa.gov/mgddf/guidesgml.html">http://stardust.jpl.nasa.gov/mgddf/guidesgml.html</A></P>
+<HR></DIV3><DIV3><H3><A HREF="http://www.cybernetics.net/users/sagrelto/elands/home.sgm">Internet Directory of Literacy and Adult Education Resource</A></H3>
+<P>Sponsored by Thomas W. Eland (<I>tweland@a1.stthomas.edu</I>), Coordinator of 
+the <A HREF="http://www.cybernetics.net/users/sagrelto/elands/contac.sgm">
+Minnesota/South Dakota Regional Adult Literacy Resource Center</A>, 
+University of St. Thomas, Saint Paul, MN (Information Content) and <A HREF="http://www.cybernetics.net/users/sagrelto/sget/contac.htm">SAGRELTO 
+Enterprises, Inc.</A>, Durham, NC (SGML/HTML Web conversion).</P><P>The first SGML/HTML edition of this <I>Directory</I> contains information about
+ 134 literacy and adult education resources on the Internet, collected by
+ Mr. Eland to aid in his work with adult literacy.
+</P><P><A HREF="http://www.cybernetics.net/users/sagrelto/elands/home.sgm">http://www.cybernetics.net/users/sagrelto/elands/home.sgm</A></P>
+<HR></DIV3><DIV3><H3><A HREF="http://www.oclc.org:5046/oclc/research/panorama/contrib/liamquin/baileys/index.html">Excerpts from Bailey's 1736 English Dictionary</A></H3>
+<P>A collection of a few hundred excerpts from the 1736 edition of
+<I>Nathan Bailey's English Dictionary</I>, as prepared by Liam Quin,
+<I>lee@sq.com</I>.</P><P><A HREF="http://www.oclc.org:5046/oclc/research/panorama/contrib/liamquin/baileys/index.html">http://www.oclc.org:5046/oclc/research/panorama/contrib/liamquin/baileys/index.html</A></P>
+<HR></DIV3><DIV3><H3><A HREF="http://www.oclc.org:5046/oclc/research/panorama/contrib/oreilly/allen/dns.sgml">Sample Chapters from DNS and BIND</A></H3>
+<P>Here are sample chapters from the O'Reilly &amp; Associates book
+<EM>DNS and BIND</EM>, by Paul Albitz and Cricket Liu.
+</P>
+<P>DNS and BIND contains all you need to know about the Internet's
+Domain Name System (DNS) and the Berkeley Internet Name Domain (BIND),
+its UNIX implementation. The Domain Name System is the Internet's `phone
+book'; it's a database that tracks important information (in particular,
+names and addresses) for every computer on the Internet.</P><P><A HREF="http://www.oclc.org:5046/oclc/research/panorama/contrib/oreilly/allen/dns.sgml">http://www.oclc.org:5046/oclc/research/panorama/contrib/oreilly/allen/dns.sgml</A></P>
+<HR></DIV3><DIV3><H3><A HREF="http://www.oclc.org:5046/oclc/research/panorama/contrib/Shakespeare/index.html">The Works of William Shakespeare</A></H3>
+<P>The latest thing in poetry and drama, contributed by Jon Bosak of Novell.</P><P><A HREF="http://www.oclc.org:5046/oclc/research/panorama/contrib/Shakespeare/index.html">http://www.oclc.org:5046/oclc/research/panorama/contrib/Shakespeare/index.html</A></P>
+<HR></DIV3><DIV3><H3><A HREF="http://www.uic.edu/orgs/tei/p3/">The Text Encoding Initiative</A></H3>
+<P>The Text Encoding Initiative's P3 fascicle, containing guidelines for marking up literature in SGML; also the new, smaller <A HREF="http://www.uic.edu/orgs/tei/intros/teiu5.tei">TEI Lite</A>.</P><P> <A HREF="http://www.uic.edu/orgs/tei/p3/">http://www.uic.edu/orgs/tei/p3/</A></P>
+<P>There are loads of files under <A HREF="ftp://ota.ox.ac.uk/pub/ota/public">ftp://ota.ox.ac.uk/pub/ota/public</A> which are currently in an early version of TEI Lite but will soon be upgraded to use new improved SHINING LITE (and joined by many, many, others). They include poetry, prose, drama and all sorts.</P>
+<P>The main entry point to the <B>Oxford Text Archive</B> itself is <A HREF="http://ota.ox.ac.uk/~archive/ota.html">http://ota.ox.ac.uk/~archive/ota.html</A>.</P><P>There is a lot of information on the <B>British National Corpus</B> at <A HREF="http://info.ox.ac.uk/bnc">http://info.ox.ac.uk/bnc</A>, including a link to the BNC Reference Manual.</P><P>A <B>report on the UK Arts and Humanities Data Service</B> marked up in TEI Lite is at <A HREF="ftp://ota.ox.ac.uk/AHD">ftp://ota.ox.ac.uk/AHD</A>.</P>
+<HR></DIV3><DIV3><H3><A HREF="http://www.hti.umich.edu/english/pd-modeng/">Modern English Collection</A></H3>
+<H4>University of Michigan Humanities Text Initiative, Ann Arbor, MI, USA</H4>
+<P>A collection of more than 300 Modern English texts is accessible through
+both a search and browse interface, all made possible through the use
+of SGML and Open Text's PAT search engine.  The texts are primarily
+significant literary resources collected from around the Internet
+and from scholars who brought the works into machine-readable form.
+All texts are searchable as a collection or in subsets; each text
+may be extracted from the collection as an SGML document.  Texts
+are encoded using the TEI "pocket" DTD (sometimes called the TEI Lite
+DTD), available at <A HREF="ftp://ftp-tei.uic.edu/pub/tei/lite/lite14.dtd">ftp://ftp-tei.uic.edu/pub/tei/lite/lite14.dtd</A>.
+This collection will continue to grow as resources are created or located
+and encoded.</P><P><A HREF="http://www.hti.umich.edu/english/pd-modeng/">http://www.hti.umich.edu/english/pd-modeng/</A></P>
+<HR></DIV3><DIV3><H3><A HREF="http://www.hti.umich.edu/english/ME.html">Middle English Collection</A></H3>
+<H4>University of Michigan Humanities Text Initiative, Ann Arbor, MI, USA</H4><P>A collection of twenty-eight Middle English texts is accessible through
+both a search and browse interface, all made possible through the use
+of SGML and Open Text's PAT search engine.</P><P><A HREF="http://www.hti.umich.edu/english/ME.html">http://www.hti.umich.edu/english/ME.html</A></P>
+<HR></DIV3><DIV3><H3><A HREF="http://www.press.umich.edu/bookhome/bordin/">Alice Freeman Palmer:  Evolution of a New Woman</A></H3>
+<H4>University of Michigan Press, Ann Arbor, MI, USA</H4><P>This book, authored by the late Ruth Bordin and published by the
+<A HREF="http://www.press.umich.edu/">University of Michigan Press</A> in 1993, is now available in SGML.
+A significant exerpt is available in SGML from the University of
+Michigan Press's WWW server.  This book has been validated against the
+ISO Book (ISO 12083) DTD.  A more thorough style sheet than that
+distributed with Panorama is available at: <A HREF="file://ftp.hti.umich.edu/pub/panorama/isobook.ssh">file://ftp.hti.umich.edu/pub/panorama/isobook.ssh</A>;
+Availability of the entire book in SGML will be posted on the Press's
+WWW server.</P><P><A HREF="http://www.press.umich.edu/bookhome/bordin/">http://www.press.umich.edu/bookhome/bordin/</A></P>
+<HR></DIV3><DIV3><H3><A HREF="http://www.press.umich.edu/jep/">Journal of Electronic Publishing</A></H3>
+<H4>University of Michigan Press Ann Arbor, MI, USA</H4><P>The Journal of Electronic Publishing (JEP), published by the University of
+Michigan Press, will make articles available in a search and retrieval
+mode using Open Text's PAT search engine.  An SGML version is being tested
+(<A HREF="http://www.press.umich.edu/jep/jep-test.html">http://www.press.umich.edu/jep/jep-test.html</A>) now and will be made
+available at a date to be determined.  An HTML version of the journal is
+available at <A HREF="http://www.press.umich.edu/jep/">ttp://www.press.umich.edu/jep/</A>.  The SGML version will be
+located at the same URL.  The prototype of the SGML version of JEP uses
+the ISO 12083 article and serial DTDs.</P><P><A HREF="http://www.press.umich.edu/jep/">http://www.press.umich.edu/jep/</A></P>
+<HR></DIV3><DIV3><H3><A HREF="http://www.oclc.org:5046/oclc/research/panorama/contrib/religion/index.html">Religious Texts</A></H3>
+<H4></H4><P>A slowly growing collection of Religious Texts marked up by Jon Bosak of Novell Inc., including the <A HREF="http://www.oclc.org:5046/oclc/research/panorama/contrib/religion/Bible/Bibletoc.html">Bible</A>, the <A HREF="http://www.oclc.org:5046/oclc/research/panorama/contrib/religion/Quran/Qurantoc.html">Quran</A> and the <A HREF="http://www.oclc.org:5046/oclc/research/panorama/contrib/religion/BOM/BOMtoc.html">Book of Mormon</A></P><P><A HREF="http://www.oclc.org:5046/oclc/research/panorama/contrib/religion/index.html">http://www.oclc.org:5046/oclc/research/panorama/contrib/religion/index.html</A></P>
+<HR></DIV3><DIV3><H3>SoftQuad Panorama Demos</H3>
+<P><A HREF="http://www.oclc.org:5046/oclc/research/panorama/demos/">A handful but growing collection of demo files</A> step you through the arguments for getting involved with full SGML on the Web. Anything you already know about HTML will stand you in good stead, but here are the reasons and their accompanying demos to show you how to move beyond HTML.</P>
+<P>If you already know about SGML, the same demos will show you what capabilities you can exploit.</P><P><A HREF="http://www.oclc.org:5046/oclc/research/panorama/demos/">http://www.oclc.org:5046/oclc/research/panorama/demos/</A></P>
+
+<HR><HR></DIV3></DIV2><DIV2><H2>When to Put Full SGML onto the Web</H2>
+<P>HTML, the SGML application of the World Wide Web, remains the very best way to encode your home page. That way you'll always know that any browser -- including Panorama -- will be able to display it. However, there will be many cases when you may want to use another SGML application.</P>
+<UL><LI>When you already have documents richly marked up in another SGML application; now with Panorama being <A HREF="http://www.oclc.org:5046/oclc/research/panorama/panorama.html">freely available</A> to the world and being ported to multiple platforms, <A HREF="http://www.oclc.org:5046/oclc/research/panorama/top-ten-reasons.sgml"> there are at least ten good reasons for serving full SGML to the desktop (link ready soon)</A>.</LI>
+<LI>Whenever you run into something that HTML won't let you do, and that HTML doesn't quite support; <A HREF="http://www.oclc.org:5046/oclc/research/panorama/demos/" NAME="sqdemos">the demo examples illustrate ...</A></LI>
+<LI>When you have longer, more complex documents -- dictionaries, technical documentation, magazines, catalogs, government publications, academic journals, newspapers -- that you want to deliver using the world-wide distribution capabilities of the Web.</LI>
+<LI>When you want greater control over the display of your on-line documents, control based not just on the element name (title, for example) but on the specific context of an element. (A title in a figure should be treated differently than a title of a book. You may want the first paragraph in a chapter to have different indentation from the others.)</LI>
+<LI>When you want to include stylesheets with your document, so you can control an entire set of display styles -- or to offer a choice of styles.</LI></UL>
+<P>Additional postings linked to this page provide tutorial assistance as well as sample files with a variety of kinds of markup.</P></DIV2><DIV2><H2><A NAME="tutdemos"></A>Putting SGML Online</H2><DIV3><H3>If You've Got SGML Today</H3>
+<P>You have several choices:</P>
+<UL><LI>Manually create stylesheets and navigators (those table of contents-like things that frequently appear at the left of the screen in Panorama). Use the samples in the <KBD>entityrc</KBD> directory as a guide. You may readily create new stylesheets and navigators by following the DTDs in the <KBD>catalog</KBD> directory, <KBD>sheet.ent</KBD> and <KBD>nav.ent</KBD> respectively.</LI>
+<LI>Alternatively, purchase a license for the commercial version of the <EM>SoftQuad Panorama PRO</EM> software. From there, follow <A HREF="seven-easy-steps.sgml">seven simple steps (link ready soon)</A> to get your SGML files onto the Web.</LI></UL></DIV3><DIV3><H3>If You've Got HTML Today</H3>
+<P>To use HTML with an SGML browser, you'll need to be a little more careful with the markup than many people have been in the past. You'll need to do two things:</P>
+<OL><LI>Ensure that your files are valid HTML. There are a number of programs to check HTML documents, and you can also use a validating HTML editor such as <A HREF="http://www.sq.com/hm-ftp.htm">SoftQuad HoTMetaL</A>.</LI>
+<LI>Make sure the HTML files begin with a DOCTYPE declaration that indicates the public identifier of the HTML DTD. Simply type this at the top of the file:<PRE>&lt;!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN"></PRE> and then be sure to follow it with the start-tag:<PRE>&lt;HTML></PRE>Similarly, the file needs to end with:<PRE>&lt;/HTML></PRE></LI></OL>
+<P>Panorama is <EM>not</EM> a substitute for a full-blown Web browser; its strength is in its support for whatever tags anyone chooses to throw at it. It does not handle HTML forms or ISMAP; use your regular Web browser for that kind of functionality. HTML makes sense in Panorama only if you have regular text and graphics files and want to use the additional stylesheet or navigator or linking capabilities.</P></DIV3><DIV3><H3>If You've Got Neither HTML nor SGML</H3>
+<UL><LI>Create documents which use the same markup as the sample files shipped with Panorama. This markup is formally <EM>declared</EM> in <EM>Document Type Definitions (DTDs)</EM> which configure SGML software (such as Panorama or SGML editors and other browsers) to recognize their markup. Several DTDs are shipped with Panorama. There is a great variety, and we provide a <A HREF="dtdlist.sgm">brief description of each (link ready soon)</A> along with some documentation for them and sample files. </LI></UL></DIV3></DIV2><DIV2><H2><A NAME="resources"></A>SGML Resources on the Web</H2><DIV3><H3>SoftQuad's SGML Primer</H3>
+<P>The introduction to this guide, <A HREF="http://www.sq.com/sgmlinfo/primintr.sgml">The SGML Primer</A>, is a useful starting point for learning about SGML in general.</P>
+<P>For learning about creating SGML applications -- which amounts to learning about reading and writing SGML DTDs -- browse the rest of SoftQuad's <A HREF="http://www.sq.com/sgmlinfo/primbody.sgml">SGML Primer</A>.</P></DIV3><DIV3><H3><A HREF="http://www.sil.org/sgml/biblio.html">Robin Cover's SGML Bibliography</A></H3><P>The bibliography provides a core list of references and abstracts for
+some 400 books and articles (as of March 1995). It updates the `General SGML bibliographies' also referenced there, but includes only references and abstracts, with a brief index. It does not include
+software, vendor lists, etc.</P>
+</DIV3><DIV3><H3><A HREF="http://www.sgmlopen.org/">The SGML Open Consortium</A></H3><P>SGML Open is a non-profit, international consortium of providers of products and services, dedicated
+to accelerating the further adoption, application, and implementation of SGML.</P><P>
+SGML Open provides its members with an open forum to discuss market needs and directions, and to
+recommend guidelines for product interoperability. The consortium receives, coordinates, and
+disseminates information describing SGML methodologies, technologies, and implementations.
+</P>
+<HR></DIV3></DIV2><DIV2><H2>Feedback</H2>
+
+<P>We appreciate any comments about the usefulness of these listings -- please mail them to 
+<EM>websgml-comments@sq.com</EM>. 
+These comments may be published as part of the SGML on the Web Page.</P><P><A NAME="aboutme"></A>The <STRONG>NCSA SGML on the Web Page</STRONG> is a joint production of 
+NCSA, the National Center for Supercomputing Applications, and SoftQuad Inc.  It is 
+maintained by Lucy Ventresca and the staff of SoftQuad.</P>
+<P>Any information contained in SGML on the Web that was not provided 
+by the University of Illinois was provided by the contributor or 
+author, and inclusion does not reflect endorsement by the University
+or by SoftQuad.  We reserve the right to reject or edit entries according to our
+standards.</P>
+
+<P>Copyright (c) 1995 by SoftQuad Inc., ALL RIGHTS RESERVED.</P></DIV2></DIV1></BODY>
+</HTML>
