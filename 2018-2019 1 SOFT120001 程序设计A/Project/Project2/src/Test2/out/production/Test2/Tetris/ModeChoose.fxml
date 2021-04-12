@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--导入类-->
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+
+<!--设置布局-->
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="Tetris.ModeChooseController"
+          prefHeight="400.0" prefWidth="600.0"
+          alignment="center" hgap="10" vgap="10">
+
+    <stylesheets>
+        <URL value="@Login.css"/>
+    </stylesheets>
+
+    <padding>
+        <Insets top="10" right="25" bottom="25" left="25"/>
+    </padding>
+
+    <!--欢迎文本-->
+    <Text fx:id="welcome4"
+          text="Please     "
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="2">
+    </Text>
+
+    <Text fx:id="welcome2"
+          text="   select   "
+          GridPane.columnIndex="0" GridPane.rowIndex="1"
+          GridPane.columnSpan="2">
+    </Text>
+
+    <Text fx:id="welcome3"
+          text="      a mode："
+          GridPane.columnIndex="0" GridPane.rowIndex="2"
+          GridPane.columnSpan="2">
+    </Text>
+
+    <HBox spacing="10" alignment="bottom_right"
+          GridPane.columnIndex="0" GridPane.rowIndex="4">
+        <Button id="btnOpenCommon" text="             Normal Mode            "
+                onAction="#openCommon"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="bottom_right"
+          GridPane.columnIndex="0" GridPane.rowIndex="5">
+        <Button id="btnOpenFast" text="           Speed-up Mode          "
+                onAction="#openFast"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="bottom_right"
+          GridPane.columnIndex="0" GridPane.rowIndex="6">
+        <Button id="btnOpenRead" text="              Read Last File           "
+                onAction="#openRead"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="bottom_right"
+          GridPane.columnIndex="0" GridPane.rowIndex="7">
+        <Button id="btnOpenBlind" text="               Blind Mode              "
+                onAction="#openBlind"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="bottom_right"
+          GridPane.columnIndex="0" GridPane.rowIndex="8">
+        <Button id="btnOpenHelp" text="                    Help                    "
+                onAction="#openHelp"/>
+    </HBox>
+</GridPane>

@@ -1,0 +1,17 @@
+.root {
+    -fx-background-image: url("background.jpg");
+}
+.btn {
+    -fx-border-color: #393939;
+    -fx-padding: 0 4 0 4;
+    -fx-cursor: hand;
+    visibility: hidden;
+}
+
+.btn:hover {
+    -fx-border-color: #ffffff;
+}
+
+.canvas {
+    -fx-background-image: url("background.jpg");
+}

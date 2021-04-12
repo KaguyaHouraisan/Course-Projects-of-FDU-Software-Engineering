@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox style="-fx-background-color: #272727;"
+      xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+        <Pane>
+            <Canvas fx:id="gameCanvas" height="888.0" width="444.0" styleClass="canvas"/>
+            <Canvas fx:id="blindModeCanvas" height="888.0" width="444.0" styleClass="canvas" />
+        </Pane>
+
+        <VBox prefHeight="400.0" prefWidth="276.0">
+            <children>
+                <Pane style="-fx-background-color: #393939;">
+                    <children>
+                        <Canvas fx:id="nextShapeCanvas" height="184.0" layoutY="56.0" width="276.0" />
+                        <Label layoutX="28.0" layoutY="12.0" text="NEXT" textFill="WHITE" />
+                    </children>
+                </Pane>
+
+                <Pane prefHeight="100.0" prefWidth="276.0" style="-fx-background-color: #393939;">
+                    <children>
+                        <Label layoutX="28.0" layoutY="12.0" text="SCORE" textFill="WHITE" />
+                        <Label fx:id="lblScore" alignment="CENTER_RIGHT"
+                               graphicTextGap="0.0"
+                               layoutX="14.0" layoutY="30.0"
+                               prefHeight="28.0" prefWidth="112.0"
+                               textAlignment="RIGHT" textFill="WHITE">
+                            <font>
+                                <Font size="48.0" />
+                            </font>
+                        </Label>
+                    </children>
+
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </Pane>
+
+                <Pane prefHeight="100.0" prefWidth="276.0" style="-fx-background-color: #393939;">
+                    <children>
+                        <Label layoutX="28.0" layoutY="12.0" text="TIME" textFill="WHITE" />
+                        <Label fx:id="lblTime" alignment="CENTER_RIGHT"
+                               graphicTextGap="0.0"
+                               layoutX="14.0" layoutY="30.0"
+                               prefHeight="28.0" prefWidth="112.0"
+                               textAlignment="RIGHT" textFill="WHITE">
+                            <font>
+                                <Font size="48.0" />
+                            </font>
+                        </Label>
+                    </children>
+
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </Pane>
+
+                <Pane prefHeight="100.0" prefWidth="276.0" style="-fx-background-color: #393939;">
+                    <children>
+                        <Label fx:id="btnRankingList" alignment="CENTER"
+                               layoutX="36.0" layoutY="25.0"
+                               prefHeight="50.0" prefWidth="198.0"
+                               styleClass="btn" text="Ranking" textFill="WHITE">
+                            <font>
+                                <Font size="36.0" />
+                            </font>
+                        </Label>
+                    </children>
+
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </Pane>
+
+                <Pane prefHeight="100.0" prefWidth="276.0" style="-fx-background-color: #393939;">
+                    <children>
+                        <Label fx:id="btnChangeSettings" alignment="CENTER"
+                               layoutX="36.0" layoutY="25.0"
+                               prefHeight="50.0" prefWidth="198.0"
+                               styleClass="btn" text="Settings" textFill="WHITE">
+                            <font>
+                                <Font size="36.0" />
+                            </font>
+                        </Label>
+                    </children>
+
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </Pane>
+
+                <Pane prefHeight="140.0" prefWidth="276.0" style="-fx-background-color: #393939;">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+
+                    <children>
+                        <Label fx:id="btnPauseGame" alignment="CENTER"
+                               layoutX="36.0" layoutY="18.0"
+                               prefHeight="50.0" prefWidth="198.0"
+                               styleClass="btn" text="PAUSE" textFill="WHITE">
+                            <font>
+                                <Font size="36.0" />
+                            </font>
+                        </Label>
+
+                        <Label fx:id="btnNewGame" alignment="CENTER"
+                               layoutX="36.0" layoutY="18.0"
+                               styleClass="btn" text="NEW GAME" textFill="WHITE">
+                            <font>
+                                <Font size="36.0" />
+                            </font>
+                        </Label>
+
+                        <Label fx:id="btnStopGame" alignment="CENTER"
+                               layoutX="36.0" layoutY="70.0"
+                               prefHeight="46.0" prefWidth="198.0"
+                               styleClass="btn" text="EXIT" textFill="WHITE">
+                            <font>
+                                <Font size="36.0" />
+                            </font>
+                        </Label>
+
+                        <Label fx:id="btnHelp" alignment="CENTER"
+                               layoutX="36.0" layoutY="70.0"
+                               styleClass="btn" text="     HELP      " textFill="WHITE">
+                            <font>
+                                <Font size="36.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+            </children>
+        </VBox>
+    </children>
+</HBox>

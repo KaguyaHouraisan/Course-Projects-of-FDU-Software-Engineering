@@ -1,0 +1,43 @@
+.root {
+    -fx-background-image: url("background.jpg");
+}
+
+#welcome {
+    -fx-font-family: "Let's go Digital";
+    -fx-font-size: 38;
+    -fx-fill: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-effect: innershadow( three-pass-box, rgba(0,0,205,50), 6, 0.0, 0, 2 );
+}
+
+#welcome2 {
+    -fx-font-family: "Let's go Digital";
+    -fx-font-size: 38;
+    -fx-fill: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-effect: innershadow( three-pass-box, rgba(0,0,0,50), 6, 0.0, 0, 2 );
+}
+
+#welcome3 {
+    -fx-font-family: "Let's go Digital";
+    -fx-font-size: 38;
+    -fx-fill: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-effect: innershadow( three-pass-box, rgba(0,0,0,50), 6, 0.0, 0, 2 );
+}
+
+#welcome4 {
+    -fx-font-family: "Let's go Digital";
+    -fx-font-size: 38;
+    -fx-fill: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-effect: innershadow( three-pass-box, rgba(0,0,0,50), 6, 0.0, 0, 2 );
+}
+
+#name {
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 20;
+    -fx-text-fill: #0000CD;
+}
+
+
