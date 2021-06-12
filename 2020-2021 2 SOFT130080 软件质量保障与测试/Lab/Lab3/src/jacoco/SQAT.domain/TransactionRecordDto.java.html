@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransactionRecordDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">lab1</a> &gt; <a href="index.source.html" class="el_package">SQAT.domain</a> &gt; <span class="el_source">TransactionRecordDto.java</span></div><h1>TransactionRecordDto.java</h1><pre class="source lang-java linenums">package SQAT.domain;
+
+public class TransactionRecordDto {
+    private String account;
+    private double amount;
+    private double balance;
+    private String branchName;
+    private String branchNum;
+    private int currency;
+    private int depositId;
+    private int id;
+    private String idNumber;
+    private long operator;
+    private String operatorTime;
+    private String password;
+    private String reciprocalAccount;
+    private String reciprocalName;
+    private String tellerName;
+    private String transactionCode;
+    private String transactionNum;
+    private String transactionType;
+    private int verifyType;
+
+<span class="fc" id="L24">    public TransactionRecordDto() {</span>
+<span class="fc" id="L25">    }</span>
+
+    public String getAccount() {
+<span class="fc" id="L28">        return account;</span>
+    }
+
+    public void setAccount(String account) {
+<span class="fc" id="L32">        this.account = account;</span>
+<span class="fc" id="L33">    }</span>
+
+    public double getAmount() {
+<span class="nc" id="L36">        return amount;</span>
+    }
+
+    public void setAmount(double amount) {
+<span class="fc" id="L40">        this.amount = amount;</span>
+<span class="fc" id="L41">    }</span>
+
+    public double getBalance() {
+<span class="nc" id="L44">        return balance;</span>
+    }
+
+    public void setBalance(double balance) {
+<span class="fc" id="L48">        this.balance = balance;</span>
+<span class="fc" id="L49">    }</span>
+
+    public String getBranchName() {
+<span class="nc" id="L52">        return branchName;</span>
+    }
+
+    public void setBranchName(String branchName) {
+<span class="fc" id="L56">        this.branchName = branchName;</span>
+<span class="fc" id="L57">    }</span>
+
+    public String getBranchNum() {
+<span class="nc" id="L60">        return branchNum;</span>
+    }
+
+    public void setBranchNum(String branchNum) {
+<span class="fc" id="L64">        this.branchNum = branchNum;</span>
+<span class="fc" id="L65">    }</span>
+
+    public int getCurrency() {
+<span class="fc" id="L68">        return currency;</span>
+    }
+
+    public void setCurrency(int currency) {
+<span class="fc" id="L72">        this.currency = currency;</span>
+<span class="fc" id="L73">    }</span>
+
+    public int getDepositId() {
+<span class="nc" id="L76">        return depositId;</span>
+    }
+
+    public void setDepositId(int depositId) {
+<span class="fc" id="L80">        this.depositId = depositId;</span>
+<span class="fc" id="L81">    }</span>
+
+    public int getId() {
+<span class="nc" id="L84">        return id;</span>
+    }
+
+    public void setId(int id) {
+<span class="fc" id="L88">        this.id = id;</span>
+<span class="fc" id="L89">    }</span>
+
+    public String getIdNumber() {
+<span class="nc" id="L92">        return idNumber;</span>
+    }
+
+    public void setIdNumber(String idNumber) {
+<span class="fc" id="L96">        this.idNumber = idNumber;</span>
+<span class="fc" id="L97">    }</span>
+
+    public long getOperator() {
+<span class="nc" id="L100">        return operator;</span>
+    }
+
+    public void setOperator(long operator) {
+<span class="fc" id="L104">        this.operator = operator;</span>
+<span class="fc" id="L105">    }</span>
+
+    public String getOperatorTime() {
+<span class="nc" id="L108">        return operatorTime;</span>
+    }
+
+    public void setOperatorTime(String operatorTime) {
+<span class="fc" id="L112">        this.operatorTime = operatorTime;</span>
+<span class="fc" id="L113">    }</span>
+
+    public String getPassword() {
+<span class="nc" id="L116">        return password;</span>
+    }
+
+    public void setPassword(String password) {
+<span class="fc" id="L120">        this.password = password;</span>
+<span class="fc" id="L121">    }</span>
+
+    public String getReciprocalAccount() {
+<span class="nc" id="L124">        return reciprocalAccount;</span>
+    }
+
+    public void setReciprocalAccount(String reciprocalAccount) {
+<span class="fc" id="L128">        this.reciprocalAccount = reciprocalAccount;</span>
+<span class="fc" id="L129">    }</span>
+
+    public String getReciprocalName() {
+<span class="nc" id="L132">        return reciprocalName;</span>
+    }
+
+    public void setReciprocalName(String reciprocalName) {
+<span class="fc" id="L136">        this.reciprocalName = reciprocalName;</span>
+<span class="fc" id="L137">    }</span>
+
+    public String getTellerName() {
+<span class="nc" id="L140">        return tellerName;</span>
+    }
+
+    public void setTellerName(String tellerName) {
+<span class="fc" id="L144">        this.tellerName = tellerName;</span>
+<span class="fc" id="L145">    }</span>
+
+    public String getTransactionCode() {
+<span class="nc" id="L148">        return transactionCode;</span>
+    }
+
+    public void setTransactionCode(String transactionCode) {
+<span class="fc" id="L152">        this.transactionCode = transactionCode;</span>
+<span class="fc" id="L153">    }</span>
+
+    public String getTransactionNum() {
+<span class="nc" id="L156">        return transactionNum;</span>
+    }
+
+    public void setTransactionNum(String transactionNum) {
+<span class="fc" id="L160">        this.transactionNum = transactionNum;</span>
+<span class="fc" id="L161">    }</span>
+
+    public String getTransactionType() {
+<span class="fc" id="L164">        return transactionType;</span>
+    }
+
+    public void setTransactionType(String transactionType) {
+<span class="fc" id="L168">        this.transactionType = transactionType;</span>
+<span class="fc" id="L169">    }</span>
+
+    public int getVerifyType() {
+<span class="nc" id="L172">        return verifyType;</span>
+    }
+
+    public void setVerifyType(int verifyType) {
+<span class="fc" id="L176">        this.verifyType = verifyType;</span>
+<span class="fc" id="L177">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

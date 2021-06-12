@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BackendHttpRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">lab1</a> &gt; <a href="index.source.html" class="el_package">SQAT.util</a> &gt; <span class="el_source">BackendHttpRequest.java</span></div><h1>BackendHttpRequest.java</h1><pre class="source lang-java linenums">package SQAT.util;
+
+import org.springframework.http.*;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+
+<span class="fc" id="L12">public class BackendHttpRequest {</span>
+	public static String backendPost(String url, Map&lt;String, Object&gt; requestBody, HttpHeaders headers) {
+<span class="fc" id="L14">		RestTemplate restTemplate = new RestTemplate();</span>
+<span class="fc" id="L15">		HttpEntity&lt;Map&lt;String, Object&gt;&gt; httpEntity = new HttpEntity&lt;&gt;(requestBody, headers);</span>
+		ResponseEntity&lt;String&gt; response;
+
+		try {
+<span class="fc" id="L19">			response = restTemplate.postForEntity(url, httpEntity, String.class);</span>
+<span class="fc" id="L20">			return response.getBody();</span>
+<span class="nc" id="L21">		} catch (HttpClientErrorException e) {</span>
+<span class="nc" id="L22">			System.out.println(e.toString());</span>
+		}
+<span class="nc" id="L24">		return null;</span>
+	}
+
+	public static String backendGet(String url, HttpHeaders headers) {
+<span class="fc" id="L28">		RestTemplate restTemplate = new RestTemplate();</span>
+<span class="fc" id="L29">		HttpEntity&lt;String&gt; entity = new HttpEntity&lt;String&gt;(&quot;parameters&quot;, headers);</span>
+		ResponseEntity&lt;String&gt; response;
+
+		try {
+<span class="fc" id="L33">			response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);</span>
+<span class="fc" id="L34">			return response.getBody();</span>
+<span class="nc" id="L35">		} catch (HttpClientErrorException e) {</span>
+<span class="nc" id="L36">			System.out.println(e.toString());</span>
+		}
+<span class="nc" id="L38">		return null;</span>
+	}
+
+	public static String sendGet(String url, String param, String token) {
+<span class="fc" id="L42">		String result = &quot;&quot;;</span>
+<span class="fc" id="L43">		BufferedReader bufferedReader = null;</span>
+		try {
+<span class="fc" id="L45">			String urlNameString = url;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">			if (!param.equals(&quot;&quot;)) {</span>
+<span class="fc" id="L47">				urlNameString = url + &quot;?&quot; + param;</span>
+			}
+
+<span class="fc" id="L50">			URL realUrl = new URL(urlNameString);</span>
+<span class="fc" id="L51">			URLConnection connection = realUrl.openConnection();</span>
+
+<span class="fc bfc" id="L53" title="All 2 branches covered.">			if (token != null) {</span>
+<span class="fc" id="L54">				connection.setRequestProperty(&quot;login-token&quot;, token);</span>
+			}
+
+<span class="fc" id="L57">			connection.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);</span>
+<span class="fc" id="L58">			connection.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);</span>
+<span class="fc" id="L59">			connection.setRequestProperty(&quot;user-agent&quot;, &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)&quot;);</span>
+<span class="fc" id="L60">			connection.connect();</span>
+
+<span class="fc" id="L62">			bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));</span>
+<span class="fc" id="L63">			String line = &quot;&quot;;</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">			while(null != (line = bufferedReader.readLine())) {</span>
+<span class="fc" id="L65">				result += line;</span>
+			}
+<span class="nc" id="L67">		} catch (Exception e) {</span>
+<span class="nc" id="L68">			System.out.println(&quot;发送GET请求出现异常: &quot;  + e);</span>
+<span class="nc" id="L69">			e.printStackTrace();</span>
+<span class="fc" id="L70">		}</span>
+<span class="fc" id="L71">		return result;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

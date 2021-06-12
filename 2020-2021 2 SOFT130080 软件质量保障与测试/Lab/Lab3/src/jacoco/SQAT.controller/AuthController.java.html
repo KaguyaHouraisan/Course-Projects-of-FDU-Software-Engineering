@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">lab1</a> &gt; <a href="index.source.html" class="el_package">SQAT.controller</a> &gt; <span class="el_source">AuthController.java</span></div><h1>AuthController.java</h1><pre class="source lang-java linenums">package SQAT.controller;
+
+import SQAT.controller.request.*;
+import SQAT.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+public class AuthController {
+    private CheckService checkService;
+    private LoanRepaymentService loanRepaymentService;
+    private GetFlowInformationService getFlowInformationService;
+    private FinancialPurchaseService financialPurchaseService;
+
+<span class="fc" id="L20">    Logger logger = LoggerFactory.getLogger(AuthController.class);</span>
+
+    @Autowired
+<span class="fc" id="L23">    public AuthController(CheckService checkService, LoanRepaymentService loanRepaymentService, GetFlowInformationService getFlowInformationService, FinancialPurchaseService financialPurchaseService) {</span>
+<span class="fc" id="L24">        this.checkService = checkService;</span>
+<span class="fc" id="L25">        this.loanRepaymentService = loanRepaymentService;</span>
+<span class="fc" id="L26">        this.getFlowInformationService = getFlowInformationService;</span>
+<span class="fc" id="L27">        this.financialPurchaseService = financialPurchaseService;</span>
+<span class="fc" id="L28">    }</span>
+
+    @PostMapping(&quot;/login&quot;)
+    public ResponseEntity&lt;?&gt; login(@RequestBody LoginRequest request) {
+<span class="nc" id="L32">        logger.debug(&quot;Login Form: &quot; + request.toString());</span>
+<span class="nc" id="L33">        return ResponseEntity.ok(checkService.login(request));</span>
+    }
+
+    @PostMapping(&quot;/checkId&quot;)
+    public ResponseEntity&lt;?&gt; checkId(@RequestBody CheckIdRequest request) {
+<span class="nc" id="L38">        logger.debug(&quot;Check ID Form: &quot; + request.toString());</span>
+<span class="nc" id="L39">        return ResponseEntity.ok(loanRepaymentService.checkId(request));</span>
+    }
+
+    @PostMapping(&quot;/getLoanAccountList&quot;)
+    public ResponseEntity&lt;?&gt; getLoanAccountList(@RequestBody GetLoanAccountListRequest request) {
+<span class="nc" id="L44">        logger.debug(&quot;Get Loan Account List Form: &quot; + request.toString());</span>
+<span class="nc" id="L45">        return ResponseEntity.ok(loanRepaymentService.getLoanAccountList(request));</span>
+    }
+
+    @PostMapping(&quot;/getLoanDetail&quot;)
+    public ResponseEntity&lt;?&gt; getLoanDetail(@RequestBody GetLoanDetailRequest request) {
+<span class="nc" id="L50">        logger.debug(&quot;Get Loan Detail Form: &quot; + request.toString());</span>
+<span class="nc" id="L51">        return ResponseEntity.ok(loanRepaymentService.getLoanDetail(request));</span>
+    }
+
+    @PostMapping(&quot;/loanPlan&quot;)
+    public ResponseEntity&lt;?&gt; loanPlan(@RequestBody LoanPlanRequest request) {
+<span class="nc" id="L56">        logger.debug(&quot;Loan Plan Form: &quot; + request.toString());</span>
+<span class="nc" id="L57">        return ResponseEntity.ok(loanRepaymentService.loanPlan(request));</span>
+    }
+
+    @PostMapping(&quot;/payLoan&quot;)
+    public ResponseEntity&lt;?&gt; payLoan(@RequestBody PayLoanRequest request) {
+<span class="nc" id="L62">        logger.debug(&quot;Pay Loan Form: &quot; + request.toString());</span>
+<span class="nc" id="L63">        return ResponseEntity.ok(loanRepaymentService.payLoan(request));</span>
+    }
+
+    @PostMapping(&quot;/payLoanPart&quot;)
+    public ResponseEntity&lt;?&gt; payLoanPart(@RequestBody PartPayLoanRequest request) {
+<span class="nc" id="L68">        logger.debug(&quot;Pay Loan Part Form: &quot; + request.toString());</span>
+<span class="nc" id="L69">        return ResponseEntity.ok(loanRepaymentService.partPayLoan(request));</span>
+    }
+
+    @PostMapping(&quot;/getFlow&quot;)
+    public ResponseEntity&lt;?&gt; getFlow(@RequestBody GetFlowRequest request) {
+<span class="nc" id="L74">        logger.debug(&quot;Get Flow Form: &quot; + request.toString());</span>
+<span class="nc" id="L75">        return ResponseEntity.ok(getFlowInformationService.getFlow(request));</span>
+    }
+
+    @PostMapping(&quot;/evaluateCreditRating&quot;)
+    public ResponseEntity&lt;?&gt; evaluateCreditRating(@RequestBody EvaluateUserCreditRatingRequest request) {
+<span class="nc" id="L80">        logger.debug(&quot;Evaluate User Credit Rating Form: &quot; + request.toString());</span>
+<span class="nc" id="L81">        return ResponseEntity.ok(financialPurchaseService.evaluateUserCreditRating(request));</span>
+    }
+
+    @PostMapping(&quot;/getProduct&quot;)
+    public ResponseEntity&lt;?&gt; getProduct(@RequestBody GetProductRequest request) {
+<span class="nc" id="L86">        logger.debug(&quot;Get Product Form: &quot; + request.toString());</span>
+<span class="nc" id="L87">        return ResponseEntity.ok(financialPurchaseService.getProduct(request));</span>
+    }
+
+    @PostMapping(&quot;/getPenalty&quot;)
+    public ResponseEntity&lt;?&gt; getPenalty(@RequestBody GetPenaltyRequest request) {
+<span class="nc" id="L92">        logger.debug(&quot;Get Penalty Form: &quot; + request.toString());</span>
+<span class="nc" id="L93">        return ResponseEntity.ok(financialPurchaseService.getPenalty(request.getToken(), request.getAccountNum()));</span>
+    }
+
+    @PostMapping(&quot;/payPenalty&quot;)
+    public ResponseEntity&lt;?&gt; payPenalty(@RequestBody PayPenaltyRequest request) {
+<span class="nc" id="L98">        logger.debug(&quot;Pay Penalty Form: &quot; + request.toString());</span>
+<span class="nc" id="L99">        return ResponseEntity.ok(financialPurchaseService.payPenalty(request.getToken(), request.getAccountNum()));</span>
+    }
+
+    @PostMapping(&quot;/buyProduct&quot;)
+    public ResponseEntity&lt;?&gt; buyProduct(@RequestBody BuyProductRequest request) {
+<span class="nc" id="L104">        logger.debug(&quot;Buy Product Form: &quot; + request.toString());</span>
+<span class="nc" id="L105">        return ResponseEntity.ok(financialPurchaseService.buyProduct(request.getToken(), request.getAccountNum(), request.getProductNum(), request.getAmount(), request.getPurchaseTime(), request.getShareAmount()));</span>
+    }
+
+    @PostMapping(&quot;/getPurchaseRecord&quot;)
+    public ResponseEntity&lt;?&gt; getPurchaseRecord(@RequestBody GetPurchaseRecordRequest request) {
+<span class="nc" id="L110">        logger.debug(&quot;Get Purchase Record Form: &quot; + request.toString());</span>
+<span class="nc" id="L111">        return ResponseEntity.ok(financialPurchaseService.getPurchaseRecord(request.getToken(), request.getAccountNum()));</span>
+    }
+
+    @PostMapping(&quot;/autoPayLoanPlan&quot;)
+    public ResponseEntity&lt;?&gt; autoPayLoanPlan(@RequestBody AutoPayLoanRequest request){
+<span class="nc" id="L116">        logger.debug(&quot;Auto Pay Loan Part Form: &quot; + request.toString());</span>
+<span class="nc" id="L117">        return ResponseEntity.ok(loanRepaymentService.autoPayLoan(request));</span>
+    }
+
+    /**
+     * This is a function to test your connectivity.
+     */
+    @GetMapping(&quot;/welcome&quot;)
+    public ResponseEntity&lt;?&gt; welcome() {
+<span class="nc" id="L125">        Map&lt;String, String&gt; response = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L126">        String message = &quot;2021 Software Quality Assurance And Testing Lab1. &quot;;</span>
+<span class="nc" id="L127">        response.put(&quot;message&quot;, message);</span>
+<span class="nc" id="L128">        return ResponseEntity.ok(response);</span>
+    }
+}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

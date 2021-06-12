@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetFlowResponse.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">lab1</a> &gt; <a href="index.source.html" class="el_package">SQAT.response</a> &gt; <span class="el_source">GetFlowResponse.java</span></div><h1>GetFlowResponse.java</h1><pre class="source lang-java linenums">package SQAT.response;
+
+import SQAT.domain.TransactionRecordDto;
+
+public class GetFlowResponse {
+    private long total;
+    private TransactionRecordDto[] list;
+    private int pageNum;
+    private int pageSize;
+    private int size;
+    private int startRow;
+    private int endRow;
+    private int pages;
+    private int prePage;
+    private int nextPage;
+    private boolean isFirstPage;
+    private boolean isLastPage;
+    private boolean hasPreviousPage;
+    private boolean hasNextPage;
+    private int navigateFirstPage;
+    private int navigateLastPage;
+    private int navigatePages;
+    private int[] navigatepageNums;
+
+<span class="fc" id="L25">    public GetFlowResponse() {</span>
+<span class="fc" id="L26">    }</span>
+
+    public long getTotal() {
+<span class="fc" id="L29">        return total;</span>
+    }
+
+    public void setTotal(long total) {
+<span class="fc" id="L33">        this.total = total;</span>
+<span class="fc" id="L34">    }</span>
+
+    public TransactionRecordDto[] getList() {
+<span class="fc" id="L37">        return list;</span>
+    }
+
+    public void setList(TransactionRecordDto[] list) {
+<span class="fc" id="L41">        this.list = list;</span>
+<span class="fc" id="L42">    }</span>
+
+    public int getPageNum() {
+<span class="nc" id="L45">        return pageNum;</span>
+    }
+
+    public void setPageNum(int pageNum) {
+<span class="fc" id="L49">        this.pageNum = pageNum;</span>
+<span class="fc" id="L50">    }</span>
+
+    public int getPageSize() {
+<span class="nc" id="L53">        return pageSize;</span>
+    }
+
+    public void setPageSize(int pageSize) {
+<span class="fc" id="L57">        this.pageSize = pageSize;</span>
+<span class="fc" id="L58">    }</span>
+
+    public int getSize() {
+<span class="fc" id="L61">        return size;</span>
+    }
+
+    public void setSize(int size) {
+<span class="fc" id="L65">        this.size = size;</span>
+<span class="fc" id="L66">    }</span>
+
+    public int getStartRow() {
+<span class="nc" id="L69">        return startRow;</span>
+    }
+
+    public void setStartRow(int startRow) {
+<span class="fc" id="L73">        this.startRow = startRow;</span>
+<span class="fc" id="L74">    }</span>
+
+    public int getEndRow() {
+<span class="nc" id="L77">        return endRow;</span>
+    }
+
+    public void setEndRow(int endRow) {
+<span class="fc" id="L81">        this.endRow = endRow;</span>
+<span class="fc" id="L82">    }</span>
+
+    public int getPages() {
+<span class="nc" id="L85">        return pages;</span>
+    }
+
+    public void setPages(int pages) {
+<span class="fc" id="L89">        this.pages = pages;</span>
+<span class="fc" id="L90">    }</span>
+
+    public int getPrePage() {
+<span class="nc" id="L93">        return prePage;</span>
+    }
+
+    public void setPrePage(int prePage) {
+<span class="fc" id="L97">        this.prePage = prePage;</span>
+<span class="fc" id="L98">    }</span>
+
+    public int getNextPage() {
+<span class="nc" id="L101">        return nextPage;</span>
+    }
+
+    public void setNextPage(int nextPage) {
+<span class="fc" id="L105">        this.nextPage = nextPage;</span>
+<span class="fc" id="L106">    }</span>
+
+    public boolean isFirstPage() {
+<span class="nc" id="L109">        return isFirstPage;</span>
+    }
+
+    public void setIsFirstPage(boolean firstPage) {
+<span class="fc" id="L113">        isFirstPage = firstPage;</span>
+<span class="fc" id="L114">    }</span>
+
+    public boolean isLastPage() {
+<span class="nc" id="L117">        return isLastPage;</span>
+    }
+
+    public void setIsLastPage(boolean lastPage) {
+<span class="fc" id="L121">        isLastPage = lastPage;</span>
+<span class="fc" id="L122">    }</span>
+
+    public boolean isHasPreviousPage() {
+<span class="nc" id="L125">        return hasPreviousPage;</span>
+    }
+
+    public void setHasPreviousPage(boolean hasPreviousPage) {
+<span class="fc" id="L129">        this.hasPreviousPage = hasPreviousPage;</span>
+<span class="fc" id="L130">    }</span>
+
+    public boolean isHasNextPage() {
+<span class="nc" id="L133">        return hasNextPage;</span>
+    }
+
+    public void setHasNextPage(boolean hasNextPage) {
+<span class="fc" id="L137">        this.hasNextPage = hasNextPage;</span>
+<span class="fc" id="L138">    }</span>
+
+    public int getNavigateFirstPage() {
+<span class="nc" id="L141">        return navigateFirstPage;</span>
+    }
+
+    public void setNavigateFirstPage(int navigateFirstPage) {
+<span class="fc" id="L145">        this.navigateFirstPage = navigateFirstPage;</span>
+<span class="fc" id="L146">    }</span>
+
+    public int getNavigateLastPage() {
+<span class="nc" id="L149">        return navigateLastPage;</span>
+    }
+
+    public void setNavigateLastPage(int navigateLastPage) {
+<span class="fc" id="L153">        this.navigateLastPage = navigateLastPage;</span>
+<span class="fc" id="L154">    }</span>
+
+    public int getNavigatePages() {
+<span class="nc" id="L157">        return navigatePages;</span>
+    }
+
+    public void setNavigatePages(int navigatePages) {
+<span class="fc" id="L161">        this.navigatePages = navigatePages;</span>
+<span class="fc" id="L162">    }</span>
+
+    public int[] getNavigatepageNums() {
+<span class="nc" id="L165">        return navigatepageNums;</span>
+    }
+
+    public void setNavigatepageNums(int[] navigatepageNums) {
+<span class="fc" id="L169">        this.navigatepageNums = navigatepageNums;</span>
+<span class="fc" id="L170">    }</span>
+
+    public String toString() {
+<span class="fc" id="L173">        return &quot;Get Flow Response Form: &quot; + &quot;total=&quot; + getTotal() + &quot; &amp; &quot; +</span>
+<span class="fc" id="L174">                &quot;size=&quot; + getSize() + &quot; &amp; &quot; + &quot;list=&quot; + getList().length;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

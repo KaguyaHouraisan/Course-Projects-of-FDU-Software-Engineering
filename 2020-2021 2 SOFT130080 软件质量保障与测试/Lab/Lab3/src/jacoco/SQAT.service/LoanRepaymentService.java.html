@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoanRepaymentService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">lab1</a> &gt; <a href="index.source.html" class="el_package">SQAT.service</a> &gt; <span class="el_source">LoanRepaymentService.java</span></div><h1>LoanRepaymentService.java</h1><pre class="source lang-java linenums">package SQAT.service;
+
+import SQAT.constant.Constant;
+import SQAT.controller.request.*;
+import SQAT.domain.*;
+import SQAT.repository.*;
+import SQAT.response.CheckIdResponse;
+import SQAT.util.BackendHttpRequest;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
+
+@Service
+public class LoanRepaymentService {
+    private AccountRepository accountRepository;
+    private LoanAccountRepository loanAccountRepository;
+    private LoanPlanRepository loanPlanRepository;
+    private ProductRepository productRepository;
+    private SpecificPurchaseRepository specificPurchaseRepository;
+
+    @Autowired
+<span class="fc" id="L25">    public LoanRepaymentService(AccountRepository accountRepository, LoanAccountRepository loanAccountRepository, LoanPlanRepository loanPlanRepository, ProductRepository productRepository, SpecificPurchaseRepository specificPurchaseRepository) {</span>
+<span class="fc" id="L26">        this.accountRepository = accountRepository;</span>
+<span class="fc" id="L27">        this.loanAccountRepository = loanAccountRepository;</span>
+<span class="fc" id="L28">        this.loanPlanRepository = loanPlanRepository;</span>
+<span class="fc" id="L29">        this.productRepository = productRepository;</span>
+<span class="fc" id="L30">        this.specificPurchaseRepository = specificPurchaseRepository;</span>
+<span class="fc" id="L31">    }</span>
+
+    public boolean checkId(CheckIdRequest request) {
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (request.getToken().equals(CheckService.getToken())) {</span>
+            //Get方式请求
+<span class="fc" id="L36">            String url = Constant.URL + &quot;/account/check?&quot; + &quot;IDNumber=&quot; + request.getIDNumber() + &quot;&amp;accountNum=&quot; + request.getAccountNum();</span>
+
+            //设置请求参数，获取返回的Json字符串
+<span class="fc" id="L39">            HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L40">            headers.add(&quot;login-token&quot;, request.getToken());</span>
+<span class="fc" id="L41">            String result = BackendHttpRequest.backendGet(url, headers);</span>
+<span class="fc" id="L42">            System.out.println(result);</span>
+
+            //解析Json字符串
+<span class="fc" id="L45">            CheckIdResponse checkIdResponse = null;</span>
+            try {
+<span class="fc" id="L47">                ObjectMapper objectMapper = new ObjectMapper();</span>
+<span class="fc" id="L48">                checkIdResponse = objectMapper.readValue(result, CheckIdResponse.class);</span>
+<span class="nc" id="L49">            } catch (Exception e) {</span>
+<span class="nc" id="L50">                System.out.println(e.toString());</span>
+<span class="fc" id="L51">            }</span>
+
+<span class="fc" id="L53">            System.out.println(checkIdResponse.toString());</span>
+<span class="fc" id="L54">            return checkIdResponse.isFlag();</span>
+        }
+<span class="fc" id="L56">        return false;</span>
+    }
+
+    public List&lt;LoanAccount&gt; getLoanAccountList(GetLoanAccountListRequest request) {
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (request.getToken().equals(CheckService.getToken())) {</span>
+<span class="fc" id="L61">            List&lt;LoanAccount&gt; loanAccounts = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">            for (LoanAccount temp : loanAccountRepository.findAll()) {</span>
+<span class="fc" id="L63">                loanAccounts.add(temp);</span>
+<span class="fc" id="L64">            }</span>
+<span class="fc" id="L65">            return loanAccounts;</span>
+        }
+<span class="fc" id="L67">        return null;</span>
+    }
+
+    public LoanAccount getLoanDetail(GetLoanDetailRequest request) {
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if (request.getToken().equals(CheckService.getToken())) {</span>
+<span class="fc" id="L72">            return loanAccountRepository.findByIouNum(request.getIouNum());</span>
+        }
+<span class="fc" id="L74">        return null;</span>
+    }
+
+    public List&lt;LoanPlan&gt; loanPlan(LoanPlanRequest request) {
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (request.getToken().equals(CheckService.getToken())) {</span>
+<span class="fc" id="L79">            return new ArrayList&lt;&gt;(loanPlanRepository.findByIouNumAndRepaymentStatus(request.getIouNum(), Integer.parseInt(request.getRepaymentStatus())));</span>
+        }
+<span class="fc" id="L81">        return null;</span>
+    }
+
+    public LoanAccount payLoan(PayLoanRequest request) {
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if (request.getToken().equals(CheckService.getToken())) {</span>
+<span class="fc" id="L86">            LoanAccount loanAccount = loanAccountRepository.findByIouNum(request.getIouNum());</span>
+<span class="fc" id="L87">            List&lt;LoanPlan&gt; loanPlans = new ArrayList&lt;&gt;(loanPlanRepository.findByIouNumAndRepaymentStatus(request.getIouNum(), 1));</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">            if (loanAccount == null) {</span>
+<span class="fc" id="L89">                return null;</span>
+            }
+<span class="fc bfc" id="L91" title="All 2 branches covered.">            if (loanPlans.size() == 0) {</span>
+<span class="fc" id="L92">                return null;</span>
+            }
+<span class="fc" id="L94">            LoanPlan loanPlan = getMinIdPlan(loanPlans);</span>
+
+<span class="fc" id="L96">            loanPlan.setUpdater(loanPlan.getCreator());</span>
+<span class="fc" id="L97">            loanPlan.setUpdateTime(request.getUpdateTime());</span>
+<span class="fc" id="L98">            loanAccount.setUpdater(loanPlan.getUpdater());</span>
+<span class="fc" id="L99">            loanAccount.setUpdateTime(request.getUpdateTime());</span>
+
+<span class="fc" id="L101">            System.out.println(loanAccount.getBalance() + &quot; &quot; + loanAccount.getRepayInterest());</span>
+<span class="fc" id="L102">            System.out.println(loanPlan.getRemainAmount() + &quot; &quot; + loanPlan.getRemainPrincipal() + &quot; &quot; + loanPlan.getRemainInterest());</span>
+
+<span class="fc bfc" id="L104" title="All 2 branches covered.">            if (loanPlan.getPenaltyInterest() == 0) {</span>
+<span class="fc" id="L105">                System.out.println(1);</span>
+
+<span class="fc" id="L107">                loanAccount.setBalance(loanAccount.getBalance() - loanPlan.getRemainPrincipal());</span>
+<span class="fc" id="L108">                loanAccount.setRepayInterest(loanAccount.getRepayInterest() + loanPlan.getRemainInterest());</span>
+
+<span class="fc" id="L110">                loanPlan.setRemainAmount(0);</span>
+<span class="fc" id="L111">                loanPlan.setRemainPrincipal(0);</span>
+<span class="fc" id="L112">                loanPlan.setRemainInterest(0);</span>
+<span class="fc" id="L113">                loanPlan.setRepaymentStatus(2);</span>
+
+<span class="fc bfc" id="L115" title="All 2 branches covered.">                if (loanPlans.size() == 1) {</span>
+<span class="fc" id="L116">                    loanAccount.setLoanSettleStatus(2);</span>
+<span class="fc" id="L117">                    loanAccount.setLoanSettleDate(request.getUpdateTime());</span>
+                }
+            } else {
+<span class="fc" id="L120">                System.out.println(2);</span>
+
+<span class="fc bfc" id="L122" title="All 2 branches covered.">                if (loanPlan.getRemainAmount() &gt; loanPlan.getPenaltyInterest()) {</span>
+<span class="fc" id="L123">                    double realAmount = loanPlan.getRemainAmount() - loanPlan.getPenaltyInterest();</span>
+<span class="fc" id="L124">                    loanPlan.setRemainAmount(loanPlan.getPenaltyInterest());</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">                    if (loanPlan.getRemainInterest() &lt;= realAmount) {</span>
+<span class="fc" id="L126">                        loanAccount.setRepayInterest(loanAccount.getRepayInterest() + loanPlan.getRemainInterest());</span>
+<span class="fc" id="L127">                        loanAccount.setBalance(loanAccount.getBalance() - (realAmount - loanPlan.getRemainInterest()));</span>
+<span class="fc" id="L128">                        loanPlan.setRemainPrincipal(loanPlan.getRemainPrincipal() - (realAmount - loanPlan.getRemainInterest()));</span>
+<span class="fc" id="L129">                        loanPlan.setRemainInterest(0);</span>
+                    } else {
+<span class="fc" id="L131">                        loanPlan.setRemainInterest(loanPlan.getRemainInterest() - realAmount);</span>
+<span class="fc" id="L132">                        loanAccount.setRepayInterest(loanAccount.getRepayInterest() + realAmount);</span>
+                    }
+<span class="fc" id="L134">                    loanPlan.setPenaltyInterest(0);</span>
+<span class="fc" id="L135">                } else {</span>
+<span class="fc" id="L136">                    loanPlan.setPenaltyInterest(loanPlan.getPenaltyInterest() - loanPlan.getRemainAmount());</span>
+                }
+            }
+
+<span class="fc" id="L140">            loanPlanRepository.save(loanPlan);</span>
+<span class="fc" id="L141">            System.out.println(loanPlan.getPlanNum() + &quot; &quot; + loanPlan.getPlanAmount() + &quot; &quot; + loanPlan.getRemainAmount());</span>
+<span class="fc" id="L142">            loanAccountRepository.save(loanAccount);</span>
+<span class="fc" id="L143">            return loanAccountRepository.findByIouNum(request.getIouNum());</span>
+        }
+<span class="fc" id="L145">        return null;</span>
+    }
+
+    public LoanAccount partPayLoan(PartPayLoanRequest partPayLoanRequest) {
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        if (partPayLoanRequest.getToken().equals(CheckService.getToken())) {</span>
+<span class="fc" id="L150">            LoanAccount loanAccount = loanAccountRepository.findByIouNum(partPayLoanRequest.getIouNum());</span>
+<span class="fc" id="L151">            List&lt;LoanPlan&gt; loanPlans = new ArrayList&lt;&gt;(loanPlanRepository.findByIouNumAndRepaymentStatus(partPayLoanRequest.getIouNum(), 1));</span>
+<span class="fc bfc" id="L152" title="All 4 branches covered.">            if (loanAccount == null || loanPlans.size() == 0 ) {</span>
+<span class="fc" id="L153">                return null;</span>
+            }
+
+<span class="fc" id="L156">            LoanPlan loanPlan = getMinIdPlan(loanPlans);</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">            if (loanPlan.getRemainAmount() &lt;= partPayLoanRequest.getPartialRepayment()) {</span>
+<span class="fc" id="L158">                return null;</span>
+            }
+<span class="fc" id="L160">            loanPlan.setUpdater(loanPlan.getCreator());</span>
+<span class="fc" id="L161">            loanPlan.setUpdateTime(partPayLoanRequest.getUpdateTime());</span>
+<span class="fc" id="L162">            loanAccount.setUpdater(loanPlan.getUpdater());</span>
+<span class="fc" id="L163">            loanAccount.setUpdateTime(partPayLoanRequest.getUpdateTime());</span>
+            //罚金为0的情况
+<span class="fc bfc" id="L165" title="All 2 branches covered.">            if (loanPlan.getPenaltyInterest() == 0) {</span>
+                //默认先还利息，然后再多余的再还本金
+                //还款金额大于剩余的利息的情况
+<span class="fc bfc" id="L168" title="All 2 branches covered.">                if (partPayLoanRequest.getPartialRepayment() &gt;= loanPlan.getRemainInterest()) {</span>
+                    //在贷款账户中将剩余要归还的本金减掉本次归还的本金
+<span class="fc" id="L170">                    loanAccount.setBalance(loanAccount.getBalance() - partPayLoanRequest.getPartialRepayment() + loanPlan.getRemainInterest());</span>
+                    //将本次总共要归还的利息加到总共归还的利息上
+<span class="fc" id="L172">                    loanAccount.setRepayInterest(loanAccount.getRepayInterest() + loanPlan.getRemainInterest());</span>
+
+<span class="fc" id="L174">                    loanPlan.setRemainPrincipal(loanPlan.getRemainPrincipal() - partPayLoanRequest.getPartialRepayment() + loanPlan.getRemainInterest());</span>
+<span class="fc" id="L175">                    loanPlan.setRemainAmount(loanPlan.getPlanAmount() - partPayLoanRequest.getPartialRepayment());</span>
+<span class="fc" id="L176">                    loanPlan.setRemainInterest(0);</span>
+                } else {
+                    //还款金额小于剩余利息的情况
+                    //将本次归还的部分利息加到总共归还的利息上
+<span class="fc" id="L180">                    loanAccount.setRepayInterest(loanAccount.getRepayInterest() + partPayLoanRequest.getPartialRepayment());</span>
+                    //在本月的还款计划的剩余利息中减掉本次归还的利息
+<span class="fc" id="L182">                    loanPlan.setRemainInterest(loanPlan.getRemainInterest() - partPayLoanRequest.getPartialRepayment());</span>
+                    //在本月的还款计划的剩余还款数中减掉本次还款金额
+<span class="fc" id="L184">                    loanPlan.setRemainAmount(loanPlan.getRemainAmount() - partPayLoanRequest.getPartialRepayment());</span>
+
+                }
+            } else {//罚金不为0且还款金额大于罚金的情况
+<span class="fc bfc" id="L188" title="All 2 branches covered.">                if (partPayLoanRequest.getPartialRepayment() &gt;= loanPlan.getPenaltyInterest()) {</span>
+<span class="fc" id="L189">                    double remainPay = partPayLoanRequest.getPartialRepayment() - loanPlan.getPenaltyInterest();</span>
+<span class="fc" id="L190">                    loanPlan.setPenaltyInterest(0);</span>
+                    //交罚金之后剩余金额大于利息的
+<span class="fc bfc" id="L192" title="All 2 branches covered.">                    if (remainPay &gt;= loanPlan.getRemainInterest()) {</span>
+<span class="fc" id="L193">                        loanAccount.setBalance(loanAccount.getBalance() - remainPay + loanPlan.getRemainInterest());</span>
+<span class="fc" id="L194">                        loanAccount.setRepayInterest(loanAccount.getRepayInterest() + loanPlan.getRemainInterest());</span>
+
+<span class="fc" id="L196">                        loanPlan.setRemainAmount(loanPlan.getRemainAmount() - remainPay);</span>
+<span class="fc" id="L197">                        loanPlan.setRemainPrincipal(loanPlan.getRemainPrincipal() - remainPay + loanPlan.getRemainInterest());</span>
+<span class="fc" id="L198">                        loanPlan.setRemainInterest(0);</span>
+
+                    } else {
+                        //本金一点也没有还，只归还了一些利息
+<span class="fc" id="L202">                        loanPlan.setRemainInterest(loanPlan.getRemainInterest() - remainPay);</span>
+<span class="fc" id="L203">                        loanAccount.setRepayInterest(loanAccount.getRepayInterest() + remainPay);</span>
+<span class="fc" id="L204">                        loanPlan.setRemainAmount(loanPlan.getRemainAmount() - remainPay);</span>
+
+                    }
+
+<span class="fc" id="L208">                } else {</span>
+                    //只交了部分罚金
+<span class="fc" id="L210">                    loanPlan.setPenaltyInterest(loanPlan.getPenaltyInterest() - partPayLoanRequest.getPartialRepayment());</span>
+                }
+            }
+<span class="fc" id="L213">            loanPlanRepository.save(loanPlan);</span>
+<span class="fc" id="L214">            loanAccountRepository.save(loanAccount);</span>
+<span class="fc" id="L215">            return loanAccountRepository.findByIouNum(partPayLoanRequest.getIouNum());</span>
+        }
+<span class="fc" id="L217">        return null;</span>
+    }
+
+    public List&lt;LoanPlan&gt; autoPayLoan(AutoPayLoanRequest autoPayLoanRequest) {
+<span class="fc bfc" id="L221" title="All 2 branches covered.">        if (autoPayLoanRequest.getToken().equals(CheckService.getToken())) {</span>
+            //获取当日到期的贷款计划集合
+<span class="fc" id="L223">            Set&lt;LoanPlan&gt; loanPlans = loanPlanRepository.findByPlanDateAndAndRepaymentStatus(autoPayLoanRequest.getCurrentDate(),1);</span>
+<span class="fc" id="L224">            List&lt;LoanPlan&gt; returnLoanPlan = new ArrayList&lt;&gt;();</span>
+            //对每一个到期还款计划
+<span class="fc bfc" id="L226" title="All 2 branches covered.">            for (LoanPlan loanPlan : loanPlans) {</span>
+                //贷款账户号（借据号）
+<span class="fc" id="L228">                String iouNum = loanPlan.getIouNum();</span>
+                //贷款账户
+<span class="fc" id="L230">                LoanAccount loanAccount = loanAccountRepository.findByIouNum(iouNum);</span>
+                //存款账户
+<span class="fc" id="L232">                Account account = accountRepository.findByAccountNum(loanAccount.getAccountNum());</span>
+                //还款流程
+                //有罚金的情况下
+<span class="fc bfc" id="L235" title="All 2 branches covered.">                if (loanPlan.getPenaltyInterest() &gt; 0) {</span>
+                    //账户余额大于罚金与剩余要还的欠款之和
+                    //将欠款和罚金归还
+                    //不需要计算罚金
+<span class="fc bfc" id="L239" title="All 2 branches covered.">                    if (account.getCash() &gt;= loanPlan.getPenaltyInterest() + loanPlan.getRemainAmount()) {</span>
+                        //从账户余额减掉归还的钱
+<span class="fc" id="L241">                        account.setCash(account.getCash() - (loanPlan.getPenaltyInterest() + loanPlan.getRemainAmount()));</span>
+                        //对贷款账户做操作
+<span class="fc" id="L243">                        loanAccount.setRepayInterest(loanAccount.getRepayInterest() + loanPlan.getRemainInterest());</span>
+<span class="fc" id="L244">                        loanAccount.setBalance(loanAccount.getBalance() - loanPlan.getRemainPrincipal());</span>
+                        //对当月还款计划操作
+<span class="fc" id="L246">                        loanPlan.setPenaltyInterest(0);</span>
+<span class="fc" id="L247">                        loanPlan.setRemainPrincipal(0);</span>
+<span class="fc" id="L248">                        loanPlan.setRemainInterest(0);</span>
+<span class="fc" id="L249">                        loanPlan.setRemainAmount(0);</span>
+<span class="fc" id="L250">                        loanPlan.setRepaymentStatus(2);</span>
+
+<span class="fc" id="L252">                        loanPlanRepository.save(loanPlan);</span>
+<span class="fc" id="L253">                        List&lt;LoanPlan&gt; remainLoanPlans1 = new ArrayList&lt;&gt;(loanPlanRepository.findByIouNumAndRepaymentStatus(iouNum, 1));</span>
+                        //这个月是最后一个月，将贷款账户状态设为已还完
+//                        if (remainLoanPlans == null || remainLoanPlans.size() == 0) {
+<span class="fc bfc" id="L256" title="All 2 branches covered.">                        if ( remainLoanPlans1.size() == 0) {</span>
+<span class="fc" id="L257">                            loanAccount.setAccountStatus(2);</span>
+<span class="fc" id="L258">                            loanAccount.setLoanSettleDate(autoPayLoanRequest.getCurrentDate());</span>
+<span class="fc" id="L259">                            loanAccountRepository.save(loanAccount);</span>
+                        }
+                        else{
+<span class="fc" id="L262">                            loanAccount.setAccountStatus(1);</span>
+<span class="fc" id="L263">                            loanAccount.setLoanSettleDate(autoPayLoanRequest.getCurrentDate());</span>
+<span class="fc" id="L264">                            loanAccountRepository.save(loanAccount);</span>
+                        }
+<span class="fc" id="L266">                    }</span>
+                    //需要计算罚金的情况
+                    else {
+                        //余额大于罚金
+<span class="fc bfc" id="L270" title="All 2 branches covered.">                        if (account.getCash() &gt;= loanPlan.getPenaltyInterest()) {</span>
+                            //归还罚金
+<span class="fc" id="L272">                            account.setCash(account.getCash() - loanPlan.getPenaltyInterest());</span>
+<span class="fc" id="L273">                            loanPlan.setPenaltyInterest(0);</span>
+                            //部分还款
+                            //余额大于利息
+<span class="fc bfc" id="L276" title="All 2 branches covered.">                            if (account.getCash() &gt;= loanPlan.getRemainInterest()) {</span>
+                                //归还全部利息
+<span class="fc" id="L278">                                loanAccount.setRepayInterest(loanAccount.getRepayInterest() + loanPlan.getRemainInterest());</span>
+<span class="fc" id="L279">                                account.setCash(account.getCash() - loanPlan.getRemainInterest());</span>
+<span class="fc" id="L280">                                loanPlan.setRemainAmount(loanPlan.getRemainAmount() - loanPlan.getRemainInterest());</span>
+<span class="fc" id="L281">                                loanPlan.setRemainInterest(0);</span>
+                                //归还部分本金
+<span class="fc" id="L283">                                loanAccount.setBalance(loanAccount.getBalance() - account.getCash());</span>
+<span class="fc" id="L284">                                loanPlan.setRemainPrincipal(loanPlan.getRemainPrincipal() - account.getCash());</span>
+<span class="fc" id="L285">                                loanPlan.setRemainAmount(loanPlan.getRemainAmount() - account.getCash());</span>
+<span class="fc" id="L286">                                account.setCash(0);</span>
+                            }
+                            //归还部分利息
+                            else {
+<span class="fc" id="L290">                                loanAccount.setRepayInterest(loanAccount.getRepayInterest() + account.getCash());</span>
+<span class="fc" id="L291">                                loanPlan.setRemainInterest(loanPlan.getRemainInterest() - account.getCash());</span>
+<span class="fc" id="L292">                                loanPlan.setRemainAmount(loanPlan.getRemainAmount()-account.getCash());</span>
+<span class="fc" id="L293">                                account.setCash(0);</span>
+                            }
+                        }
+                        //余额小于罚金
+                        else {
+<span class="fc" id="L298">                            loanPlan.setPenaltyInterest(loanPlan.getPenaltyInterest() - account.getCash());</span>
+<span class="fc" id="L299">                            account.setCash(0);</span>
+
+                        }
+                        //计算罚金，并将剩下的钱加到下个月
+                        //获取下个月的还款计划
+<span class="fc" id="L304">                        loanPlan.setRepaymentStatus(3);</span>
+<span class="fc" id="L305">                        loanPlanRepository.save(loanPlan);</span>
+<span class="fc" id="L306">                        List&lt;LoanPlan&gt; remainLoanPlans = new ArrayList&lt;&gt;(loanPlanRepository.findByIouNumAndRepaymentStatus(iouNum, 1));</span>
+                        //这个月是最后一个月，将罚金加到这个月上,其余不变
+//                        if (remainLoanPlans == null || remainLoanPlans.size() == 0) {
+<span class="fc bfc" id="L309" title="All 2 branches covered.">                        if ( remainLoanPlans.size() == 0) {</span>
+<span class="fc" id="L310">                            loanPlan.setRepaymentStatus(1);</span>
+<span class="fc" id="L311">                            loanPlan.setPenaltyInterest(loanPlan.getPlanAmount() * 0.05 + loanPlan.getPenaltyInterest());</span>
+<span class="fc" id="L312">                            loanPlanRepository.save(loanPlan);</span>
+                        }else {
+                            //下个月
+<span class="fc" id="L315">                            LoanPlan nextLoanPlan = getMinIdPlan(remainLoanPlans);</span>
+<span class="fc" id="L316">                            nextLoanPlan.setPenaltyInterest(loanPlan.getPlanAmount() * 0.05 + loanPlan.getPenaltyInterest());</span>
+<span class="fc" id="L317">                            nextLoanPlan.setRemainInterest(nextLoanPlan.getRemainInterest() + loanPlan.getRemainInterest());</span>
+<span class="fc" id="L318">                            nextLoanPlan.setRemainPrincipal(nextLoanPlan.getRemainPrincipal() + loanPlan.getRemainPrincipal());</span>
+<span class="fc" id="L319">                            nextLoanPlan.setRemainAmount(loanPlan.getPlanAmount() + loanPlan.getRemainAmount());</span>
+<span class="fc" id="L320">                            loanPlanRepository.save(nextLoanPlan);</span>
+                        }
+
+
+<span class="fc" id="L324">                    }</span>
+                }
+                //没有罚金的情况
+                else {
+                    //余额大于本期所有欠款
+<span class="fc bfc" id="L329" title="All 2 branches covered.">                    if (account.getCash() &gt;= loanPlan.getRemainAmount()) {</span>
+<span class="fc" id="L330">                        account.setCash(account.getCash() - loanPlan.getRemainAmount());</span>
+
+<span class="fc" id="L332">                        loanAccount.setRepayInterest(loanAccount.getRepayInterest() + loanPlan.getRemainInterest());</span>
+<span class="fc" id="L333">                        loanAccount.setBalance(loanAccount.getBalance() - loanPlan.getRemainPrincipal());</span>
+
+<span class="fc" id="L335">                        loanPlan.setRemainAmount(0);</span>
+<span class="fc" id="L336">                        loanPlan.setRemainPrincipal(0);</span>
+<span class="fc" id="L337">                        loanPlan.setRemainInterest(0);</span>
+<span class="fc" id="L338">                        loanPlan.setRepaymentStatus(2);</span>
+
+<span class="fc" id="L340">                        loanPlanRepository.save(loanPlan);</span>
+<span class="fc" id="L341">                        List&lt;LoanPlan&gt; remainLoanPlans = new ArrayList&lt;&gt;(loanPlanRepository.findByIouNumAndRepaymentStatus(iouNum, 1));</span>
+                        //这个月是最后一个月，将贷款账户状态设为已还完
+//                        if (remainLoanPlans == null || remainLoanPlans.size() == 0) {
+<span class="fc bfc" id="L344" title="All 2 branches covered.">                        if ( remainLoanPlans.size() == 0) {</span>
+<span class="fc" id="L345">                            loanAccount.setAccountStatus(2);</span>
+<span class="fc" id="L346">                            loanAccount.setLoanSettleDate(autoPayLoanRequest.getCurrentDate());</span>
+<span class="fc" id="L347">                            loanAccountRepository.save(loanAccount);</span>
+                        }
+                        else{
+<span class="fc" id="L350">                            loanAccount.setAccountStatus(1);</span>
+<span class="fc" id="L351">                            loanAccount.setLoanSettleDate(autoPayLoanRequest.getCurrentDate());</span>
+<span class="fc" id="L352">                            loanAccountRepository.save(loanAccount);</span>
+                        }
+<span class="fc" id="L354">                    }</span>
+                    else {
+                        //余额大于利息
+<span class="fc bfc" id="L357" title="All 2 branches covered.">                        if (account.getCash() &gt; loanPlan.getRemainInterest()) {</span>
+<span class="fc" id="L358">                            account.setCash(account.getCash() - loanPlan.getRemainInterest());</span>
+
+<span class="fc" id="L360">                            loanAccount.setRepayInterest(loanAccount.getRepayInterest() + loanPlan.getRemainInterest());</span>
+<span class="fc" id="L361">                            loanAccount.setBalance(loanAccount.getBalance() - account.getCash());</span>
+
+<span class="fc" id="L363">                            loanPlan.setRemainAmount(loanPlan.getRemainAmount() - loanPlan.getRemainInterest() - account.getCash());</span>
+<span class="fc" id="L364">                            loanPlan.setRemainInterest(0);</span>
+<span class="fc" id="L365">                            loanPlan.setRemainPrincipal(loanPlan.getRemainPrincipal() - account.getCash());</span>
+<span class="fc" id="L366">                            account.setCash(0);</span>
+
+                        } else {
+<span class="fc" id="L369">                            loanAccount.setRepayInterest(loanAccount.getRepayInterest() + account.getCash());</span>
+
+<span class="fc" id="L371">                            loanPlan.setRemainAmount(loanPlan.getRemainAmount() - account.getCash());</span>
+<span class="fc" id="L372">                            loanPlan.setRemainInterest(loanPlan.getRemainInterest() - account.getCash());</span>
+
+<span class="fc" id="L374">                            account.setCash(0);</span>
+
+                        }
+                        //计算罚金，并将剩下的钱加到下个月
+                        //获取下个月的还款计划
+<span class="fc" id="L379">                        loanPlan.setRepaymentStatus(3);</span>
+<span class="fc" id="L380">                        loanPlanRepository.save(loanPlan);</span>
+<span class="fc" id="L381">                        List&lt;LoanPlan&gt; remainLoanPlans = new ArrayList&lt;&gt;(loanPlanRepository.findByIouNumAndRepaymentStatus(iouNum, 1));</span>
+                        //这个月是最后一个月，将罚金加到这个月上,其余不变
+//                        if (remainLoanPlans == null || remainLoanPlans.size() == 0) {
+<span class="fc bfc" id="L384" title="All 2 branches covered.">                        if ( remainLoanPlans.size() == 0) {</span>
+<span class="fc" id="L385">                            loanPlan.setRepaymentStatus(1);</span>
+<span class="fc" id="L386">                            loanPlan.setPenaltyInterest(loanPlan.getPlanAmount() * 0.05);</span>
+<span class="fc" id="L387">                            loanPlanRepository.save(loanPlan);</span>
+                        }else {
+                            //下个月
+<span class="fc" id="L390">                            LoanPlan nextLoanPlan = getMinIdPlan(remainLoanPlans);</span>
+<span class="fc" id="L391">                            nextLoanPlan.setPenaltyInterest(loanPlan.getPlanAmount() * 0.05);</span>
+<span class="fc" id="L392">                            nextLoanPlan.setRemainInterest(nextLoanPlan.getRemainInterest() + loanPlan.getRemainInterest());</span>
+<span class="fc" id="L393">                            nextLoanPlan.setRemainPrincipal(nextLoanPlan.getRemainPrincipal() + loanPlan.getRemainPrincipal());</span>
+<span class="fc" id="L394">                            nextLoanPlan.setRemainAmount(loanPlan.getPlanAmount() + loanPlan.getRemainAmount());</span>
+<span class="fc" id="L395">                            loanPlanRepository.save(nextLoanPlan);</span>
+                        }
+                    }
+
+                }
+<span class="fc" id="L400">                loanAccountRepository.save(loanAccount);</span>
+<span class="fc" id="L401">                accountRepository.save(account);</span>
+<span class="fc" id="L402">                returnLoanPlan.add(loanPlan);</span>
+<span class="fc" id="L403">            }</span>
+<span class="fc" id="L404">            return returnLoanPlan;</span>
+        }
+<span class="fc" id="L406">        return null;</span>
+    }
+
+    public LoanPlan getMinIdPlan(List&lt;LoanPlan&gt; loanPlans) {
+<span class="fc" id="L410">        LoanPlan result = loanPlans.get(0);</span>
+<span class="fc bfc" id="L411" title="All 2 branches covered.">        for (LoanPlan temp : loanPlans) {</span>
+<span class="fc bfc" id="L412" title="All 2 branches covered.">            if (temp.getPlanNum() &lt; result.getPlanNum()) {</span>
+<span class="fc" id="L413">                result = temp;</span>
+            }
+<span class="fc" id="L415">        }</span>
+<span class="fc" id="L416">        return result;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

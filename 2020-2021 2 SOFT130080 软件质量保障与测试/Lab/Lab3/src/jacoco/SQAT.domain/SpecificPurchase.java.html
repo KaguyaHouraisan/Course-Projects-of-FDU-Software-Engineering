@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SpecificPurchase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">lab1</a> &gt; <a href="index.source.html" class="el_package">SQAT.domain</a> &gt; <span class="el_source">SpecificPurchase.java</span></div><h1>SpecificPurchase.java</h1><pre class="source lang-java linenums">package SQAT.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
+
+@Entity
+public class SpecificPurchase implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String purchaseNum;
+    private String productNum;
+    private String productName;
+    private int productType;
+    private double rate;
+    private double price;
+    private double principal;
+    private String createTime;
+    private long shareAmount;
+    private String accountNum;
+
+<span class="fc" id="L26">    public SpecificPurchase() {</span>
+<span class="fc" id="L27">    }</span>
+
+    public Long getId() {
+<span class="fc" id="L30">        return id;</span>
+    }
+
+    public void setId(Long id) {
+<span class="nc" id="L34">        this.id = id;</span>
+<span class="nc" id="L35">    }</span>
+
+    public String getPurchaseNum() {
+<span class="fc" id="L38">        return purchaseNum;</span>
+    }
+
+    public void setPurchaseNum(String purchaseNum) {
+<span class="fc" id="L42">        this.purchaseNum = purchaseNum;</span>
+<span class="fc" id="L43">    }</span>
+
+    public String getProductNum() {
+<span class="fc" id="L46">        return productNum;</span>
+    }
+
+    public void setProductNum(String productNum) {
+<span class="fc" id="L50">        this.productNum = productNum;</span>
+<span class="fc" id="L51">    }</span>
+
+    public double getPrincipal() {
+<span class="fc" id="L54">        return principal;</span>
+    }
+
+    public void setPrincipal(double principal) {
+<span class="fc" id="L58">        this.principal = principal;</span>
+<span class="fc" id="L59">    }</span>
+
+    public String getCreateTime() {
+<span class="fc" id="L62">        return createTime;</span>
+    }
+
+    public void setCreateTime(String createTime) {
+<span class="fc" id="L66">        this.createTime = createTime;</span>
+<span class="fc" id="L67">    }</span>
+
+    public String getProductName() {
+<span class="fc" id="L70">        return productName;</span>
+    }
+
+    public void setProductName(String productName) {
+<span class="fc" id="L74">        this.productName = productName;</span>
+<span class="fc" id="L75">    }</span>
+
+    public int getProductType() {
+<span class="nc" id="L78">        return productType;</span>
+    }
+
+    public void setProductType(int productType) {
+<span class="fc" id="L82">        this.productType = productType;</span>
+<span class="fc" id="L83">    }</span>
+
+    public double getRate() {
+<span class="fc" id="L86">        return rate;</span>
+    }
+
+    public void setRate(double rate) {
+<span class="fc" id="L90">        this.rate = rate;</span>
+<span class="fc" id="L91">    }</span>
+
+    public double getPrice() {
+<span class="nc" id="L94">        return price;</span>
+    }
+
+    public void setPrice(double price) {
+<span class="fc" id="L98">        this.price = price;</span>
+<span class="fc" id="L99">    }</span>
+
+    public long getShareAmount() {
+<span class="fc" id="L102">        return shareAmount;</span>
+    }
+
+    public void setShareAmount(long shareAmount) {
+<span class="fc" id="L106">        this.shareAmount = shareAmount;</span>
+<span class="fc" id="L107">    }</span>
+
+    public String getAccountNum() {
+<span class="fc" id="L110">        return accountNum;</span>
+    }
+
+    public void setAccountNum(String accountNum) {
+<span class="fc" id="L114">        this.accountNum = accountNum;</span>
+<span class="fc" id="L115">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

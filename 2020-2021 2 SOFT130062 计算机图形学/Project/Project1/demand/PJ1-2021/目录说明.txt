@@ -1,0 +1,5 @@
+sample目录下的html文件展示了最终的演示效果
+
+src目录下有本次pj1所需的配置文件config.js和一些简单的初始化代码，可以此为基础完成本次pj，也可以自行创建独立的html js和css文件等
+
+test目录下的html文件用于测试你的浏览器是否支持webgl和html5<canvas>

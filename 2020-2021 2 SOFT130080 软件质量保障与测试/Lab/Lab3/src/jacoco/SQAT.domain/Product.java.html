@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Product.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">lab1</a> &gt; <a href="index.source.html" class="el_package">SQAT.domain</a> &gt; <span class="el_source">Product.java</span></div><h1>Product.java</h1><pre class="source lang-java linenums">package SQAT.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
+
+@Entity
+public class Product implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String productNum;
+    private String productName;
+    private int productType;
+    private double rate;
+    private double price;
+
+<span class="fc" id="L21">    public Product() {</span>
+<span class="fc" id="L22">    }</span>
+
+    public Long getId() {
+<span class="fc" id="L25">        return id;</span>
+    }
+
+    public void setId(Long id) {
+<span class="nc" id="L29">        this.id = id;</span>
+<span class="nc" id="L30">    }</span>
+
+    public String getProductNum() {
+<span class="fc" id="L33">        return productNum;</span>
+    }
+
+    public void setProductNum(String productNum) {
+<span class="fc" id="L37">        this.productNum = productNum;</span>
+<span class="fc" id="L38">    }</span>
+
+    public String getProductName() {
+<span class="fc" id="L41">        return productName;</span>
+    }
+
+    public void setProductName(String productName) {
+<span class="fc" id="L45">        this.productName = productName;</span>
+<span class="fc" id="L46">    }</span>
+
+    public int getProductType() {
+<span class="fc" id="L49">        return productType;</span>
+    }
+
+    public void setProductType(int productType) {
+<span class="fc" id="L53">        this.productType = productType;</span>
+<span class="fc" id="L54">    }</span>
+
+    public double getRate() {
+<span class="fc" id="L57">        return rate;</span>
+    }
+
+    public void setRate(double rate) {
+<span class="fc" id="L61">        this.rate = rate;</span>
+<span class="fc" id="L62">    }</span>
+
+    public double getPrice() {
+<span class="fc" id="L65">        return price;</span>
+    }
+
+    public void setPrice(double price) {
+<span class="fc" id="L69">        this.price = price;</span>
+<span class="fc" id="L70">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

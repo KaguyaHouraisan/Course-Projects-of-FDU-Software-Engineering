@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoanPlanResponse.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">lab1</a> &gt; <a href="index.source.html" class="el_package">SQAT.response</a> &gt; <span class="el_source">LoanPlanResponse.java</span></div><h1>LoanPlanResponse.java</h1><pre class="source lang-java linenums">package SQAT.response;
+
+import SQAT.domain.LoanPlan;
+
+public class LoanPlanResponse {
+    private int code;
+    private long count;
+    private LoanPlan[] data;
+    private boolean flag;
+    private String message;
+
+<span class="fc" id="L12">    public LoanPlanResponse() {</span>
+<span class="fc" id="L13">    }</span>
+
+    public int getCode() {
+<span class="fc" id="L16">        return code;</span>
+    }
+
+    public void setCode(int code) {
+<span class="fc" id="L20">        this.code = code;</span>
+<span class="fc" id="L21">    }</span>
+
+    public long getCount() {
+<span class="fc" id="L24">        return count;</span>
+    }
+
+    public void setCount(long count) {
+<span class="fc" id="L28">        this.count = count;</span>
+<span class="fc" id="L29">    }</span>
+
+    public LoanPlan[] getData() {
+<span class="fc" id="L32">        return data;</span>
+    }
+
+    public void setData(LoanPlan[] data) {
+<span class="fc" id="L36">        this.data = data;</span>
+<span class="fc" id="L37">    }</span>
+
+    public boolean isFlag() {
+<span class="fc" id="L40">        return flag;</span>
+    }
+
+    public void setFlag(boolean flag) {
+<span class="fc" id="L44">        this.flag = flag;</span>
+<span class="fc" id="L45">    }</span>
+
+    public String getMessage() {
+<span class="fc" id="L48">        return message;</span>
+    }
+
+    public void setMessage(String message) {
+<span class="fc" id="L52">        this.message = message;</span>
+<span class="fc" id="L53">    }</span>
+
+    public String toString() {
+<span class="fc" id="L56">        return &quot;Loan Plan Form: &quot; + &quot;code=&quot; + getCode() + &quot; &amp; &quot; + &quot;count=&quot; + getCount() + &quot; &amp; &quot; +</span>
+<span class="fc" id="L57">                &quot;flag=&quot; + isFlag() + &quot; &amp; &quot; + &quot;message=&quot; + getMessage() + &quot; &amp; &quot; + &quot;data=&quot; + getData();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

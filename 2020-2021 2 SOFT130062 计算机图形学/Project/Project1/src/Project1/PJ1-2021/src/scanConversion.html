@@ -1,0 +1,298 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>CG project1 - part1</title>
+    <script src="./config.js"></script>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="800" height="600" style="border:1px solid #c3c3c3;">
+        Your browser does not support the canvas element.
+    </canvas>
+
+    <script type="text/javascript">
+        //该函数在一个canvas上绘制一个点（参见Project需求文档P12）
+        //其中cxt是从canvas中获得的一个2d上下文context
+        //    x,y分别是该点的横纵坐标
+        //    color是表示颜色的整形数组，形如[r,g,b]
+        function drawPoint(cxt, x, y, color) {
+			cxt.beginPath();
+            cxt.strokeStyle = "rgba(" + color[0] + "," + color[1] + "," + color[2] + ")";
+            cxt.moveTo(x, y);
+            cxt.lineTo(x + 1, y + 1);
+            cxt.stroke();
+        }
+
+        //canvas绘制线段的方法: 从(x1,y1)到(x2,y2)的线段（参见Project需求文档P12）
+        function drawLine(cxt, x1, y1, x2, y2, color) {
+            cxt.beginPath();
+            cxt.strokeStyle = "rgba(" + color[0] + "," + color[1] + "," + color[2] + "," + 255 + ")";
+            cxt.lineWidth = 2;
+            cxt.moveTo(x1, y1);
+            cxt.lineTo(x2, y2);
+            cxt.stroke();
+        }
+
+        //计算两点之间连成线段的参数[k,b]，其中k为斜率，b为截距（pointA、pointB为线段两端点的坐标）
+        function calculateSlope(pointA, pointB) {
+            //点A与点B横坐标不同，斜率存在
+            if (pointA[0] !== pointB[0]) {
+                let k = (pointA[1] - pointB[1]) / (pointA[0] - pointB[0]);
+                let b = pointA[1] - k * pointA[0];
+                return [k, b];
+            }
+
+            //点A与点B横坐标相同，斜率不存在
+            return null;
+        }
+
+        //计算扫描线与给定线段交点的坐标（y为扫描线纵坐标，pointA、pointB为线段两端点的坐标，color为需要填充的颜色
+        function calculateIntersection(y, pointA, pointB, color) {
+            //两个端点分别在扫描线两侧（或在扫描线上），即扫描线与给定线段有交点
+            if (Math.max(pointA[1], pointB[1]) >= y && Math.min(pointA[1], pointB[1]) <= y) {
+                //计算两点之间连成线段的参数[k,b]
+                let kAndB = calculateSlope(pointA, pointB);
+                
+                //线段垂直于横轴，即斜率不存在
+                if (kAndB == null) {
+                    return pointA[0];
+                }
+                //线段平行于x轴，即斜率为0，与扫描线重合，画线并返回-1
+                else if (kAndB[0] === 0) {
+                    drawLine(cxt, pointA[0], y, pointB[0], y, color);
+                    return -1;
+                }
+                //线段不与横轴或纵轴垂直，返回交点横坐标
+                else {
+                    return [Math.round((y - kAndB[1]) / kAndB[0])];
+                }
+            }
+
+            //两个端点在扫描线同一侧，即扫描线与给定线段没有交点，返回-1
+            return -1;
+        }
+
+        //为每个顶点绘制圆形手柄（cxt为上下文，vertices为各个顶点坐标构成的二维数组）
+        function drawCircle(cxt, vertices) {
+            //设置圆形手柄半径为10像素，颜色为红色
+            let radius = 10;
+            let color = [255, 0, 0];
+
+            for (let i = 0; i < vertices.length; i++) {
+                let x = 0, y = radius, d = 1 - radius;
+                while (x <= y) {
+                    //利用圆的八分对称性画圆
+                    drawLine(cxt, vertices[i][0] + x, vertices[i][1] + y, vertices[i][0] + x, vertices[i][1] - y, color);
+                    drawLine(cxt, vertices[i][0] - x, vertices[i][1] + y, vertices[i][0] - x, vertices[i][1] - y, color);
+                    drawLine(cxt, vertices[i][0] + y, vertices[i][1] + x, vertices[i][0] + y, vertices[i][1] - x, color);
+                    drawLine(cxt, vertices[i][0] - y, vertices[i][1] + x, vertices[i][0] - y, vertices[i][1] - x, color);
+                    if (d < 0) {
+                        d += 2 * x + 3;
+                    } else {
+                        d += 2 * (x - y) + 5;
+                        y--;
+                    }
+                    x++;
+                }
+            }
+        }
+
+        //判断鼠标是否在canvas的范围内（x、y分别为鼠标当前的横纵坐标）
+        function isInCanvas(x, y) {
+            return 0 < x && x < canvasSize.maxX && 0 < y && y < canvasSize.maxY;
+        }
+
+        //判断鼠标是否在某一顶点处圆形手柄的范围内（x、y分别为鼠标当前的横纵坐标，vertices为各个顶点坐标构成的二维数组）
+        function isInCircle(x, y, vertices) {
+            for (let i = 0; i < vertices.length; i++) {
+                //圆形手柄半径之前设置为10像素
+                let radius = 10;
+
+                //鼠标在某一顶点处圆形手柄的范围内，返回该顶点在vertices数组中的下标
+                if (Math.sqrt(Math.pow(x - vertices[i][0], 2) + Math.pow(y - vertices[i][1], 2)) < radius) {
+                    return i;
+                }
+            }
+
+            //鼠标不在某一顶点处圆形手柄的范围内，返回-1
+            return -1;
+        }
+
+        //标记当前使用顶点在各顶点坐标数组vertex_pos中的下标
+        let pointNum = -1;
+
+        //事件：按下鼠标
+        function doMousePressed(ev) {
+            let mouseEvent = window.event || ev;
+            let x = mouseEvent.offsetX;
+            let y = mouseEvent.offsetY;
+
+            //若按下时鼠标位置在canvas的范围内，且在某一顶点处圆形手柄的范围内，启动事件：移动鼠标
+            pointNum = isInCircle(x, y, vertex_pos);
+            if (pointNum !== -1 && isInCanvas(x, y)) {
+                document.addEventListener("mousemove", doMouseMoved);
+            }
+        }
+
+        //事件：移动鼠标
+        function doMouseMoved(ev) {
+            let mouseEvent = window.event || ev;
+            let x = mouseEvent.offsetX;
+            let y = mouseEvent.offsetY;
+
+            //若按下时鼠标位置在canvas的范围内，实时更新canvas及各顶点坐标数组vertex_pos
+            if (isInCanvas(x, y)) {
+                vertex_pos[pointNum][0] = x;
+                vertex_pos[pointNum][1] = y;
+                cxt.clearRect(0, 0, canvas.width, canvas.height);
+                //绘制多边形
+                drawAllPolygon(cxt, pointNum);
+                //绘制顶点手柄
+                drawCircle(cxt, vertex_pos);
+            }
+        }
+
+        //事件：松开鼠标
+        function doMouseReleased(ev) {
+            doMouseMoved(ev);
+            //停止监听移动鼠标的事件
+            document.removeEventListener("mousemove", doMouseMoved);
+        }
+
+        //两数之差
+        function getDifferenceOfNumber(a, b) {
+            return a - b
+        }
+
+        //绘制四边形（cxt为上下文，vertices为各个顶点坐标构成的二维数组，polygonPoints为四边形顶点在vertices中下标的数组）
+        function drawPolygon(cxt, vertices, polygonPoints, vertexColor) {
+            //获取填充该四边形的颜色
+            let color = vertexColor[polygonPoints[0]];
+
+            //获取四个顶点的坐标
+            let pointA = vertex_pos[polygonPoints[0]];
+            let pointB = vertex_pos[polygonPoints[1]];
+            let pointC = vertex_pos[polygonPoints[2]];
+            let pointD = vertex_pos[polygonPoints[3]];
+            let points = [pointA, pointB, pointC, pointD];
+
+            //获取四个顶点中y的最大值和最小值，即扫描时的最大范围
+            let maxY = Math.max(pointA[1], pointB[1], pointC[1], pointD[1]);
+            let minY = Math.min(pointA[1], pointB[1], pointC[1], pointD[1]);
+
+            //前前一次扫描时扫描线与线段的交点
+            let prevOfPrevIntersection = [];
+            //前一次扫描时扫描线与线段的交点
+            let previousIntersection = [];
+            //当前扫描时扫描线与线段的交点
+            let currentIntersection = [];
+
+            //关键步骤：获取扫描线与边的全部交点，对上一次扫描的结果进行排序并填充颜色（画线），更新变量
+            for (let i = minY; i < maxY + 2; i++) {
+                //初始化变量
+                let count = 0;
+                currentIntersection = [];
+
+                //通过calculateIntersection函数进行扫描，获得交点坐标
+                for (let j = 0; j < 4; j++) {
+                    let res = calculateIntersection(i, points[j], points[(j + 1) % 4], color);
+                    //若获得-1，即斜率不存在，不需要存入数组
+                    if (res !== -1) {
+                        currentIntersection[count] = res;
+                        count++;
+                    }
+                }
+
+                //使用array.sort函数的compare接口对上次扫描结果进行排序
+                previousIntersection.sort(getDifferenceOfNumber);
+
+                //根据排序结果进行填充颜色（画线）（交点个数只可能为2、3或4个）
+                //交点为两个时，可以直接画线
+                if (previousIntersection.length === 2) {
+                    drawLine(cxt, previousIntersection[0], i, previousIntersection[1], i, color);
+                }
+                //交点为三个时，只可能有两个点重合，可以直接画线
+                else if (previousIntersection.length === 3) {
+                    drawLine(cxt, previousIntersection[0], i, previousIntersection[2], i, color);
+                }
+                //交点为四个（不妨依次设为A，B，C和D）时，需要根据前一次与后一次交点个数判断
+                else if (previousIntersection.length === 4) {
+                    //前一次与后一次交点个数均为2，只可能为正常四边形，可以直接画线
+                    if (currentIntersection.length === 2 && prevOfPrevIntersection.length === 2) {
+                        drawLine(cxt, previousIntersection[0], i, previousIntersection[3], i, color);
+                    }
+                    //前一次与后一次交点个数不均为2，只可能四边形有边相交，分别在点A和B、点C和D间画线
+                    else {
+                        drawLine(cxt, previousIntersection[0], i, previousIntersection[1], i, color);
+                        drawLine(cxt, previousIntersection[2], i, previousIntersection[3], i, color);
+                    }
+                }
+
+                //更新变量
+                prevOfPrevIntersection = previousIntersection;
+                previousIntersection = currentIntersection;
+            }
+        }
+
+        //绘制canvas中所有四边形（cxt为上下文，pointNum为当前移动的顶点在vertex_pos数组中的下标）
+        function drawAllPolygon(cxt, pointNum) {
+            //记录有顶点被移动的四边形的顶点的二维数组
+            let polygonMoved = [];
+            //记录有顶点被移动的四边形的个数
+            let numMoved = 0;
+            //记录没有顶点被移动的四边形的顶点的二维数组
+            let polygonNotMoved = [];
+            //记录没有顶点被移动的四边形的个数
+            let numNotMoved = 0;
+
+            //判断四边形是否有顶点被移动
+            for (let i = 0; i < 4; i++) {
+                let isMove = false;
+                for (let j = 0; j < 4; j++) {
+                    if (polygon[i][j] === pointNum) {
+                        isMove = true;
+                        break;
+                    }
+                }
+
+                //有顶点被移动，则将其顶点数组加入polygonMoved数组
+                if (isMove) {
+                    polygonMoved[numMoved] = polygon[i];
+                    numMoved++;
+                }
+                //没有顶点被移动，则将其顶点数组加入polygonNotMoved数组
+                else {
+                    polygonNotMoved[numNotMoved] = polygon[i];
+                    numNotMoved++;
+                }
+            }
+
+            //对顶点均没有被移动的四边形进行填充
+            for (let i = 0; i < numNotMoved; i++) {
+                drawPolygon(cxt, vertex_pos, polygonNotMoved[i], vertex_color);
+            }
+
+            //对有顶点被移动的四边形进行填充
+            for (let i = 0; i < numMoved; i++) {
+                drawPolygon(cxt, vertex_pos, polygonMoved[i], vertex_color)
+            }
+        }
+
+        //将Canvas整体坐标偏移0.5个像素，否则绘制宽度为1px的线段时会存在宽度和颜色上的错误（参见Project需求文档P6-8）
+        let canvas = document.getElementById("myCanvas");
+        //设置canvas的宽度和高度
+        canvas.setAttribute("width", canvasSize.maxX);
+        canvas.setAttribute("height", canvasSize.maxY);
+        let cxt = canvas.getContext("2d");
+        cxt.translate(0.5, 0.5);
+
+        //绘制初始状态下的四边形和顶点处的圆形手柄
+        drawAllPolygon(cxt, 0);
+        drawCircle(cxt, vertex_pos);
+
+        //绑定鼠标按下和松开事件
+        document.addEventListener("mousedown", doMousePressed);
+        document.addEventListener("mouseup", doMouseReleased);
+    </script>
+</body>
+</html>

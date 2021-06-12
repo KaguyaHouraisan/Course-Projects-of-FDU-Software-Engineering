@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CheckService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">lab1</a> &gt; <a href="index.source.html" class="el_package">SQAT.service</a> &gt; <span class="el_source">CheckService.java</span></div><h1>CheckService.java</h1><pre class="source lang-java linenums">package SQAT.service;
+
+import SQAT.constant.Constant;
+import SQAT.controller.request.GetLoanAccountListRequest;
+import SQAT.controller.request.LoanPlanRequest;
+import SQAT.controller.request.LoginRequest;
+import SQAT.domain.Account;
+import SQAT.domain.LoanAccount;
+import SQAT.domain.LoanPlan;
+import SQAT.domain.Product;
+import SQAT.repository.*;
+import SQAT.response.GetLoanAccountListResponse;
+import SQAT.response.GetLoanDetailResponse;
+import SQAT.response.LoanPlanResponse;
+import SQAT.response.LoginResponse;
+import SQAT.util.BackendHttpRequest;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Service;
+import java.util.*;
+
+/**
+ * AuthController中除login外，均不应映射到本类；
+ * 本类中其他方法均服务于login。
+ * By RenHao Liu
+ */
+@Service
+public class CheckService {
+    private static String token;
+    private AccountRepository accountRepository;
+    private LoanAccountRepository loanAccountRepository;
+    private LoanPlanRepository loanPlanRepository;
+    private ProductRepository productRepository;
+    private SpecificPurchaseRepository specificPurchaseRepository;
+
+    @Autowired
+<span class="fc" id="L38">    public CheckService(AccountRepository accountRepository, LoanAccountRepository loanAccountRepository, LoanPlanRepository loanPlanRepository, ProductRepository productRepository, SpecificPurchaseRepository specificPurchaseRepository) {</span>
+<span class="fc" id="L39">        this.accountRepository = accountRepository;</span>
+<span class="fc" id="L40">        this.loanAccountRepository = loanAccountRepository;</span>
+<span class="fc" id="L41">        this.loanPlanRepository = loanPlanRepository;</span>
+<span class="fc" id="L42">        this.productRepository = productRepository;</span>
+<span class="fc" id="L43">        this.specificPurchaseRepository = specificPurchaseRepository;</span>
+<span class="fc" id="L44">    }</span>
+
+    public String login(LoginRequest loginRequest) {
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (checkIfLoggedIn()) {</span>
+<span class="fc" id="L48">            return null;</span>
+        }
+
+        //POST方式请求
+<span class="fc" id="L52">        String url = Constant.URL + &quot;/sys/login/restful&quot;;</span>
+<span class="fc" id="L53">        String parameter = &quot;username=&quot; + loginRequest.getUsername() + &quot;&amp;password=&quot; + loginRequest.getPassword();</span>
+
+        //设置请求参数，获取返回的Json字符串
+<span class="fc" id="L56">        HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L57">        Map&lt;String, Object&gt; requestBody = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L58">        requestBody.put(&quot;username&quot;, loginRequest.getUsername());</span>
+<span class="fc" id="L59">        requestBody.put(&quot;password&quot;, loginRequest.getPassword());</span>
+<span class="fc" id="L60">        String result = BackendHttpRequest.backendPost(url + &quot;?&quot; + parameter, requestBody, headers);</span>
+<span class="fc" id="L61">        System.out.println(result);</span>
+
+        //解析Json字符串
+<span class="fc" id="L64">        LoginResponse loginResponse = null;</span>
+        try {
+<span class="fc" id="L66">            ObjectMapper objectMapper = new ObjectMapper();</span>
+<span class="fc" id="L67">            loginResponse = objectMapper.readValue(result, LoginResponse.class);</span>
+<span class="nc" id="L68">        } catch (Exception e) {</span>
+<span class="nc" id="L69">            System.out.println(e.toString());</span>
+<span class="fc" id="L70">        }</span>
+
+<span class="fc" id="L72">        System.out.println(loginResponse.toString());</span>
+<span class="fc" id="L73">        token = loginResponse.getToken();</span>
+
+        //从BTS后端拉取数据
+<span class="fc" id="L76">        loanAccountRepository.deleteAll();</span>
+<span class="fc" id="L77">        GetLoanAccountListRequest getLoanAccountListRequest = new GetLoanAccountListRequest();</span>
+<span class="fc" id="L78">        getLoanAccountListRequest.setToken(getToken());</span>
+<span class="fc" id="L79">        List&lt;LoanAccount&gt; loanAccounts = getLoanAccountList(getLoanAccountListRequest);</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        for (LoanAccount temp : loanAccounts) {</span>
+<span class="fc" id="L81">            loanAccountRepository.save(temp);</span>
+<span class="fc" id="L82">        }</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        for (LoanAccount temp : loanAccountRepository.findAll()) {</span>
+<span class="fc" id="L84">            LoanAccount loanAccount = getLoanDetail(temp.getIouNum());</span>
+<span class="fc" id="L85">            temp.setUpdateTime(loanAccount.getUpdateTime());</span>
+<span class="fc" id="L86">            temp.setUpdater(loanAccount.getUpdater());</span>
+<span class="fc" id="L87">            temp.setCustomerCode(loanAccount.getCustomerCode());</span>
+<span class="fc" id="L88">            temp.setContractNum(loanAccount.getContractNum());</span>
+<span class="fc" id="L89">            temp.setProductCode(loanAccount.getProductCode());</span>
+<span class="fc" id="L90">            temp.setAccountNum(loanAccount.getAccountNum());</span>
+<span class="fc" id="L91">            temp.setPayMethod(loanAccount.getPayMethod());</span>
+<span class="fc" id="L92">            temp.setLoanMethod(loanAccount.getLoanMethod());</span>
+<span class="fc" id="L93">            temp.setCurrency(loanAccount.getCurrency());</span>
+<span class="fc" id="L94">            temp.setContractAmount(loanAccount.getContractAmount());</span>
+<span class="fc" id="L95">            temp.setLoanCost(loanAccount.getLoanCost());</span>
+<span class="fc" id="L96">            temp.setLoanAmount(loanAccount.getLoanAmount());</span>
+<span class="fc" id="L97">            temp.setLoanDate(loanAccount.getLoanDate());</span>
+<span class="fc" id="L98">            temp.setIouDate(loanAccount.getIouDate());</span>
+<span class="fc" id="L99">            temp.setYearlyRate(loanAccount.getYearlyRate());</span>
+<span class="fc" id="L100">            temp.setRepaymentMethod(loanAccount.getRepaymentMethod());</span>
+<span class="fc" id="L101">            temp.setRepaymentCount(loanAccount.getRepaymentCount());</span>
+<span class="fc" id="L102">            temp.setDueDate(loanAccount.getDueDate());</span>
+<span class="fc" id="L103">            temp.setTotalAmount(loanAccount.getTotalAmount());</span>
+<span class="fc" id="L104">            temp.setTotalInterest(loanAccount.getTotalInterest());</span>
+<span class="fc" id="L105">            temp.setBalance(loanAccount.getBalance());</span>
+<span class="fc" id="L106">            temp.setOverdueBalance(loanAccount.getOverdueBalance());</span>
+<span class="fc" id="L107">            temp.setRepayInterest(loanAccount.getRepayInterest());</span>
+<span class="fc" id="L108">            temp.setLoanUse(loanAccount.getLoanUse());</span>
+<span class="fc" id="L109">            temp.setLoanStatus(loanAccount.getLoanStatus());</span>
+<span class="fc" id="L110">            temp.setLoanSettleStatus(loanAccount.getLoanSettleStatus());</span>
+<span class="fc" id="L111">            temp.setLoanSettleDate(loanAccount.getLoanSettleDate());</span>
+<span class="fc" id="L112">            temp.setLoanCancelStatus(loanAccount.getLoanCancelStatus());</span>
+<span class="fc" id="L113">            temp.setBranchNum(loanAccount.getBranchNum());</span>
+<span class="fc" id="L114">            loanAccountRepository.save(temp);</span>
+<span class="fc" id="L115">        }</span>
+
+<span class="fc" id="L117">        loanPlanRepository.deleteAll();</span>
+<span class="fc" id="L118">        LoanPlanRequest loanPlanRequest = new LoanPlanRequest();</span>
+<span class="fc" id="L119">        loanPlanRequest.setToken(getToken());</span>
+        List&lt;LoanPlan&gt; loanPlans;
+<span class="fc bfc" id="L121" title="All 2 branches covered.">        for (LoanAccount temp : loanAccounts) {</span>
+<span class="fc" id="L122">            loanPlanRequest.setIouNum(temp.getIouNum());</span>
+
+<span class="fc" id="L124">            loanPlanRequest.setRepaymentStatus(&quot;1&quot;);</span>
+<span class="fc" id="L125">            loanPlans = loanPlan(loanPlanRequest);</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">            for (LoanPlan loanPlan : loanPlans) {</span>
+<span class="fc" id="L127">                loanPlanRepository.save(loanPlan);</span>
+<span class="fc" id="L128">            }</span>
+
+<span class="fc" id="L130">            loanPlanRequest.setRepaymentStatus(&quot;2&quot;);</span>
+<span class="fc" id="L131">            loanPlans = loanPlan(loanPlanRequest);</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">            for (LoanPlan loanPlan : loanPlans) {</span>
+<span class="fc" id="L133">                loanPlanRepository.save(loanPlan);</span>
+<span class="fc" id="L134">            }</span>
+
+<span class="fc" id="L136">            loanPlanRequest.setRepaymentStatus(&quot;3&quot;);</span>
+<span class="fc" id="L137">            loanPlans = loanPlan(loanPlanRequest);</span>
+<span class="fc" id="L138">            LoanPlan testTemp = new LoanPlan();</span>
+<span class="fc" id="L139">            testTemp.setIouNum(&quot;TestTemp&quot;);</span>
+<span class="fc" id="L140">            loanPlans.add(testTemp);</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">            for (LoanPlan loanPlan : loanPlans) {</span>
+<span class="fc" id="L142">                loanPlanRepository.save(loanPlan);</span>
+<span class="fc" id="L143">            }</span>
+<span class="fc" id="L144">            loanPlanRepository.deleteAll(loanPlanRepository.findByIouNum(&quot;TestTemp&quot;));</span>
+<span class="fc" id="L145">        }</span>
+
+<span class="fc" id="L147">        accountRepository.deleteAll();</span>
+<span class="fc" id="L148">        Set&lt;String&gt; customerCodes = new HashSet&lt;&gt;();</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        for (LoanAccount temp : loanAccounts) {</span>
+<span class="fc" id="L150">            customerCodes.add(temp.getCustomerCode());</span>
+<span class="fc" id="L151">            System.out.println(temp.getAccountNum() + &quot; &quot; + temp.getCustomerCode());</span>
+<span class="fc" id="L152">        }</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">        for (String temp : customerCodes) {</span>
+<span class="fc" id="L154">            Account account = getAccount(temp);</span>
+<span class="fc" id="L155">            Set&lt;LoanAccount&gt; loanAccountSet = loanAccountRepository.findByCustomerCode(temp);</span>
+<span class="fc" id="L156">            String accountNum = &quot;&quot;;</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">            for (LoanAccount loanAccount : loanAccountSet) {</span>
+<span class="fc" id="L158">                accountNum = loanAccount.getAccountNum();</span>
+<span class="fc" id="L159">            }</span>
+<span class="fc" id="L160">            account.setAccountNum(accountNum);</span>
+<span class="fc" id="L161">            accountRepository.save(account);</span>
+<span class="fc" id="L162">        }</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">        for (Account temp : accountRepository.findAll()) {</span>
+<span class="fc" id="L164">            System.out.println(temp.getId() + &quot; &quot; + temp.getAccountNum() + &quot; &quot; + temp.getCash());</span>
+<span class="fc" id="L165">        }</span>
+
+<span class="fc" id="L167">        productRepository.deleteAll();</span>
+<span class="fc" id="L168">        Product product1 = new Product();</span>
+<span class="fc" id="L169">        product1.setProductNum(&quot;A0001&quot;);</span>
+<span class="fc" id="L170">        product1.setProductName(&quot;优选股票&quot;);</span>
+<span class="fc" id="L171">        product1.setProductType(Constant.STOCK);</span>
+<span class="fc" id="L172">        product1.setRate(-1);</span>
+<span class="fc" id="L173">        product1.setPrice(5.5);</span>
+<span class="fc" id="L174">        productRepository.save(product1);</span>
+<span class="fc" id="L175">        Product product2 = new Product();</span>
+<span class="fc" id="L176">        product2.setProductNum(&quot;B0001&quot;);</span>
+<span class="fc" id="L177">        product2.setProductName(&quot;优选基金&quot;);</span>
+<span class="fc" id="L178">        product2.setProductType(Constant.FUND);</span>
+<span class="fc" id="L179">        product2.setRate(4.2);</span>
+<span class="fc" id="L180">        product2.setPrice(-1);</span>
+<span class="fc" id="L181">        productRepository.save(product2);</span>
+<span class="fc" id="L182">        Product product3 = new Product();</span>
+<span class="fc" id="L183">        product3.setProductNum(&quot;C0001&quot;);</span>
+<span class="fc" id="L184">        product3.setProductName(&quot;优选理财&quot;);</span>
+<span class="fc" id="L185">        product3.setProductType(Constant.WMP);</span>
+<span class="fc" id="L186">        product3.setRate(3.5);</span>
+<span class="fc" id="L187">        product3.setPrice(-1);</span>
+<span class="fc" id="L188">        productRepository.save(product3);</span>
+
+<span class="fc" id="L190">        specificPurchaseRepository.deleteAll();</span>
+<span class="fc" id="L191">        return result;</span>
+    }
+
+    public List&lt;LoanAccount&gt; getLoanAccountList(GetLoanAccountListRequest request) {
+<span class="fc bfc" id="L195" title="All 2 branches covered.">        if (request.getToken().equals(CheckService.getToken())) {</span>
+            //Get方式请求
+<span class="fc" id="L197">            String url = Constant.URL + &quot;/loan?&quot; + &quot;pageNum=&quot; + &quot;1&quot; + &quot;&amp;pageSize=&quot; + &quot;1000&quot;</span>
+                    + &quot;&amp;params=&quot; + &quot;%7B%22orderBy%22:%22order+by+b.updateTime+desc%22%7D&quot;;
+
+            //设置请求参数，获取返回的Json字符串
+<span class="fc" id="L201">            String result = BackendHttpRequest.sendGet(url, &quot;&quot;, request.getToken());</span>
+<span class="fc" id="L202">            System.out.println(result);</span>
+
+            //解析Json字符串
+<span class="fc" id="L205">            GetLoanAccountListResponse getLoanAccountListResponse = null;</span>
+            try {
+<span class="fc" id="L207">                ObjectMapper objectMapper = new ObjectMapper();</span>
+<span class="fc" id="L208">                getLoanAccountListResponse = objectMapper.readValue(result, GetLoanAccountListResponse.class);</span>
+<span class="nc" id="L209">            } catch (Exception e) {</span>
+<span class="nc" id="L210">                System.out.println(e.toString());</span>
+<span class="fc" id="L211">            }</span>
+
+<span class="fc" id="L213">            System.out.println(getLoanAccountListResponse.toString());</span>
+<span class="fc" id="L214">            return new ArrayList&lt;&gt;(Arrays.asList(getLoanAccountListResponse.getList()));</span>
+        }
+<span class="fc" id="L216">        return null;</span>
+    }
+
+    public List&lt;LoanPlan&gt; loanPlan(LoanPlanRequest request) {
+<span class="fc bfc" id="L220" title="All 2 branches covered.">        if (request.getToken().equals(CheckService.getToken())) {</span>
+            //Get方式请求
+<span class="fc" id="L222">            String url = Constant.URL + &quot;/loan/plan?&quot; + &quot;iouNum=&quot; + request.getIouNum() + &quot;&amp;repaymentStatus=&quot;</span>
+<span class="fc" id="L223">                    + request.getRepaymentStatus();</span>
+
+            //设置请求参数，获取返回的Json字符串
+<span class="fc" id="L226">            String result = BackendHttpRequest.sendGet(url, &quot;&quot;, request.getToken());</span>
+<span class="fc" id="L227">            System.out.println(result);</span>
+
+            //解析Json字符串
+<span class="fc" id="L230">            LoanPlanResponse loanPlanResponse = null;</span>
+            try {
+<span class="fc" id="L232">                ObjectMapper objectMapper = new ObjectMapper();</span>
+<span class="fc" id="L233">                loanPlanResponse = objectMapper.readValue(result, LoanPlanResponse.class);</span>
+<span class="nc" id="L234">            } catch (Exception e) {</span>
+<span class="nc" id="L235">                System.out.println(e.toString());</span>
+<span class="fc" id="L236">            }</span>
+
+<span class="fc" id="L238">            System.out.println(loanPlanResponse.toString());</span>
+<span class="fc" id="L239">            return new ArrayList&lt;&gt;(Arrays.asList(loanPlanResponse.getData()));</span>
+        }
+<span class="fc" id="L241">        return null;</span>
+    }
+
+    private Account getAccount(String customerCode) {
+        //Get方式请求
+<span class="fc" id="L246">        String url = Constant.URL + &quot;/account?&quot; + &quot;customerCode=&quot; + customerCode;</span>
+
+        //设置请求参数，获取返回的Json字符串
+<span class="fc" id="L249">        String result = BackendHttpRequest.sendGet(url, &quot;&quot;, getToken());</span>
+<span class="fc" id="L250">        System.out.println(result);</span>
+<span class="fc" id="L251">        int temp = result.indexOf(&quot;balance\&quot;:&quot;);</span>
+<span class="fc" id="L252">        result = result.substring(temp + 9);</span>
+<span class="fc" id="L253">        int temp2 = result.indexOf(&quot;,\&quot;accountType&quot;);</span>
+<span class="fc" id="L254">        result = result.substring(0, temp2);</span>
+<span class="fc" id="L255">        System.out.println(result);</span>
+<span class="fc" id="L256">        double cash = Double.parseDouble(result);</span>
+
+<span class="fc" id="L258">        Account account = new Account();</span>
+<span class="fc" id="L259">        account.setCash(cash);</span>
+<span class="fc" id="L260">        return account;</span>
+    }
+
+    private LoanAccount getLoanDetail(String iouNum) {
+        //Get方式请求
+<span class="fc" id="L265">        String url = Constant.URL + &quot;/loan/&quot; + iouNum;</span>
+
+        //设置请求参数，获取返回的Json字符串
+<span class="fc" id="L268">        String result = BackendHttpRequest.sendGet(url, &quot;&quot;, getToken());</span>
+<span class="fc" id="L269">        System.out.println(result);</span>
+
+        //解析Json字符串
+<span class="fc" id="L272">        GetLoanDetailResponse getLoanDetailResponse = null;</span>
+        try {
+<span class="fc" id="L274">            ObjectMapper objectMapper = new ObjectMapper();</span>
+<span class="fc" id="L275">            getLoanDetailResponse = objectMapper.readValue(result, GetLoanDetailResponse.class);</span>
+<span class="nc" id="L276">        } catch (Exception e) {</span>
+<span class="nc" id="L277">            System.out.println(e.toString());</span>
+<span class="fc" id="L278">        }</span>
+
+<span class="fc" id="L280">        System.out.println(getLoanDetailResponse.toString());</span>
+<span class="fc" id="L281">        return getLoanDetailResponse.getData();</span>
+    }
+
+    private boolean checkIfLoggedIn() {
+<span class="fc bfc" id="L285" title="All 2 branches covered.">        return token != null;</span>
+    }
+
+    public static String getToken() {
+<span class="fc" id="L289">        return token;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

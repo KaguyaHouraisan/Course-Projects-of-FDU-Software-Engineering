@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoanAccount.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">lab1</a> &gt; <a href="index.source.html" class="el_package">SQAT.domain</a> &gt; <span class="el_source">LoanAccount.java</span></div><h1>LoanAccount.java</h1><pre class="source lang-java linenums">package SQAT.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
+
+@Entity
+public class LoanAccount implements Serializable  {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private int accountStatus;
+    private double balance;
+    private String createTime;
+    private String updateTime;
+    private String contractNum;
+    private String accountNum;
+    private int payMethod;
+    private int loanMethod;
+    private double currency;
+    private double contractAmount;
+    private double loanCost;
+    private double loanAmount;
+    private String iouDate;
+    private double yearlyRate;
+    private long creator;
+    private long updater;
+    private String customerCode;
+    private String customerName;
+    private String dueDate;
+    private String iouNum;
+    private int loanCancelStatus;
+    private String loanDate;
+    private int loanSettleStatus;
+    private String loanSettleDate;
+    private int loanStatus;
+    private double overdueBalance;
+    private String productCode;
+    private String productName;
+    private int repaymentMethod;
+    private int repaymentCount;
+    private double repayInterest;
+    private String loanUse;
+    private double totalAmount;
+    private double totalInterest;
+    private String branchNum;
+    private String transactionCode;
+
+<span class="fc" id="L52">    public LoanAccount() {</span>
+<span class="fc" id="L53">    }</span>
+
+<span class="nc" id="L55">    public LoanAccount(int accountStatus, double balance, String createTime, long creator, String customerCode, String customerName, String dueDate, String iouNum, int loanCancelStatus, String loanDate, int loanSettleStatus, int loanStatus, double overdueBalance, String productCode, String productName, int repaymentMethod, double totalAmount, double totalInterest) {</span>
+<span class="nc" id="L56">        this.accountStatus = accountStatus;</span>
+<span class="nc" id="L57">        this.balance = balance;</span>
+<span class="nc" id="L58">        this.createTime = createTime;</span>
+<span class="nc" id="L59">        this.creator = creator;</span>
+<span class="nc" id="L60">        this.customerCode = customerCode;</span>
+<span class="nc" id="L61">        this.customerName = customerName;</span>
+<span class="nc" id="L62">        this.dueDate = dueDate;</span>
+<span class="nc" id="L63">        this.iouNum = iouNum;</span>
+<span class="nc" id="L64">        this.loanCancelStatus = loanCancelStatus;</span>
+<span class="nc" id="L65">        this.loanDate = loanDate;</span>
+<span class="nc" id="L66">        this.loanSettleStatus = loanSettleStatus;</span>
+<span class="nc" id="L67">        this.loanStatus = loanStatus;</span>
+<span class="nc" id="L68">        this.overdueBalance = overdueBalance;</span>
+<span class="nc" id="L69">        this.productCode = productCode;</span>
+<span class="nc" id="L70">        this.productName = productName;</span>
+<span class="nc" id="L71">        this.repaymentMethod = repaymentMethod;</span>
+<span class="nc" id="L72">        this.totalAmount = totalAmount;</span>
+<span class="nc" id="L73">        this.totalInterest = totalInterest;</span>
+<span class="nc" id="L74">    }</span>
+
+    public int getAccountStatus() {
+<span class="nc" id="L77">        return accountStatus;</span>
+    }
+
+    public void setAccountStatus(int accountStatus) {
+<span class="fc" id="L81">        this.accountStatus = accountStatus;</span>
+<span class="fc" id="L82">    }</span>
+
+    public double getBalance() {
+<span class="fc" id="L85">        return balance;</span>
+    }
+
+    public void setBalance(double balance) {
+<span class="fc" id="L89">        this.balance = balance;</span>
+<span class="fc" id="L90">    }</span>
+
+    public String getCreateTime() {
+<span class="nc" id="L93">        return createTime;</span>
+    }
+
+    public void setCreateTime(String createTime) {
+<span class="fc" id="L97">        this.createTime = createTime;</span>
+<span class="fc" id="L98">    }</span>
+
+    public long getCreator() {
+<span class="nc" id="L101">        return creator;</span>
+    }
+
+    public void setCreator(long creator) {
+<span class="fc" id="L105">        this.creator = creator;</span>
+<span class="fc" id="L106">    }</span>
+
+    public String getCustomerCode() {
+<span class="fc" id="L109">        return customerCode;</span>
+    }
+
+    public void setCustomerCode(String customerCode) {
+<span class="fc" id="L113">        this.customerCode = customerCode;</span>
+<span class="fc" id="L114">    }</span>
+
+    public String getCustomerName() {
+<span class="nc" id="L117">        return customerName;</span>
+    }
+
+    public void setCustomerName(String customerName) {
+<span class="fc" id="L121">        this.customerName = customerName;</span>
+<span class="fc" id="L122">    }</span>
+
+    public String getDueDate() {
+<span class="fc" id="L125">        return dueDate;</span>
+    }
+
+    public void setDueDate(String dueDate) {
+<span class="fc" id="L129">        this.dueDate = dueDate;</span>
+<span class="fc" id="L130">    }</span>
+
+    public String getIouNum() {
+<span class="fc" id="L133">        return iouNum;</span>
+    }
+
+    public void setIouNum(String iouNum) {
+<span class="fc" id="L137">        this.iouNum = iouNum;</span>
+<span class="fc" id="L138">    }</span>
+
+    public int getLoanCancelStatus() {
+<span class="fc" id="L141">        return loanCancelStatus;</span>
+    }
+
+    public void setLoanCancelStatus(int loanCancelStatus) {
+<span class="fc" id="L145">        this.loanCancelStatus = loanCancelStatus;</span>
+<span class="fc" id="L146">    }</span>
+
+    public String getLoanDate() {
+<span class="fc" id="L149">        return loanDate;</span>
+    }
+
+    public void setLoanDate(String loanDate) {
+<span class="fc" id="L153">        this.loanDate = loanDate;</span>
+<span class="fc" id="L154">    }</span>
+
+    public int getLoanSettleStatus() {
+<span class="fc" id="L157">        return loanSettleStatus;</span>
+    }
+
+    public void setLoanSettleStatus(int loanSettleStatus) {
+<span class="fc" id="L161">        this.loanSettleStatus = loanSettleStatus;</span>
+<span class="fc" id="L162">    }</span>
+
+    public int getLoanStatus() {
+<span class="fc" id="L165">        return loanStatus;</span>
+    }
+
+    public void setLoanStatus(int loanStatus) {
+<span class="fc" id="L169">        this.loanStatus = loanStatus;</span>
+<span class="fc" id="L170">    }</span>
+
+    public double getOverdueBalance() {
+<span class="fc" id="L173">        return overdueBalance;</span>
+    }
+
+    public void setOverdueBalance(double overdueBalance) {
+<span class="fc" id="L177">        this.overdueBalance = overdueBalance;</span>
+<span class="fc" id="L178">    }</span>
+
+    public String getProductCode() {
+<span class="fc" id="L181">        return productCode;</span>
+    }
+
+    public void setProductCode(String productCode) {
+<span class="fc" id="L185">        this.productCode = productCode;</span>
+<span class="fc" id="L186">    }</span>
+
+    public String getProductName() {
+<span class="fc" id="L189">        return productName;</span>
+    }
+
+    public void setProductName(String productName) {
+<span class="fc" id="L193">        this.productName = productName;</span>
+<span class="fc" id="L194">    }</span>
+
+    public int getRepaymentMethod() {
+<span class="fc" id="L197">        return repaymentMethod;</span>
+    }
+
+    public void setRepaymentMethod(int repaymentMethod) {
+<span class="fc" id="L201">        this.repaymentMethod = repaymentMethod;</span>
+<span class="fc" id="L202">    }</span>
+
+    public double getTotalAmount() {
+<span class="fc" id="L205">        return totalAmount;</span>
+    }
+
+    public void setTotalAmount(double totalAmount) {
+<span class="fc" id="L209">        this.totalAmount = totalAmount;</span>
+<span class="fc" id="L210">    }</span>
+
+    public double getTotalInterest() {
+<span class="fc" id="L213">        return totalInterest;</span>
+    }
+
+    public void setTotalInterest(double totalInterest) {
+<span class="fc" id="L217">        this.totalInterest = totalInterest;</span>
+<span class="fc" id="L218">    }</span>
+
+    public Long getId() {
+<span class="fc" id="L221">        return id;</span>
+    }
+
+    public void setId(Long id) {
+<span class="fc" id="L225">        this.id = id;</span>
+<span class="fc" id="L226">    }</span>
+
+    public String getUpdateTime() {
+<span class="fc" id="L229">        return updateTime;</span>
+    }
+
+    public void setUpdateTime(String updateTime) {
+<span class="fc" id="L233">        this.updateTime = updateTime;</span>
+<span class="fc" id="L234">    }</span>
+
+    public String getContractNum() {
+<span class="fc" id="L237">        return contractNum;</span>
+    }
+
+    public void setContractNum(String contractNum) {
+<span class="fc" id="L241">        this.contractNum = contractNum;</span>
+<span class="fc" id="L242">    }</span>
+
+    public String getAccountNum() {
+<span class="fc" id="L245">        return accountNum;</span>
+    }
+
+    public void setAccountNum(String accountNum) {
+<span class="fc" id="L249">        this.accountNum = accountNum;</span>
+<span class="fc" id="L250">    }</span>
+
+    public int getPayMethod() {
+<span class="fc" id="L253">        return payMethod;</span>
+    }
+
+    public void setPayMethod(int payMethod) {
+<span class="fc" id="L257">        this.payMethod = payMethod;</span>
+<span class="fc" id="L258">    }</span>
+
+    public int getLoanMethod() {
+<span class="fc" id="L261">        return loanMethod;</span>
+    }
+
+    public void setLoanMethod(int loanMethod) {
+<span class="fc" id="L265">        this.loanMethod = loanMethod;</span>
+<span class="fc" id="L266">    }</span>
+
+    public double getCurrency() {
+<span class="fc" id="L269">        return currency;</span>
+    }
+
+    public void setCurrency(double currency) {
+<span class="fc" id="L273">        this.currency = currency;</span>
+<span class="fc" id="L274">    }</span>
+
+    public double getContractAmount() {
+<span class="fc" id="L277">        return contractAmount;</span>
+    }
+
+    public void setContractAmount(double contractAmount) {
+<span class="fc" id="L281">        this.contractAmount = contractAmount;</span>
+<span class="fc" id="L282">    }</span>
+
+    public double getLoanCost() {
+<span class="fc" id="L285">        return loanCost;</span>
+    }
+
+    public void setLoanCost(double loanCost) {
+<span class="fc" id="L289">        this.loanCost = loanCost;</span>
+<span class="fc" id="L290">    }</span>
+
+    public double getLoanAmount() {
+<span class="fc" id="L293">        return loanAmount;</span>
+    }
+
+    public void setLoanAmount(double loanAmount) {
+<span class="fc" id="L297">        this.loanAmount = loanAmount;</span>
+<span class="fc" id="L298">    }</span>
+
+    public String getIouDate() {
+<span class="fc" id="L301">        return iouDate;</span>
+    }
+
+    public void setIouDate(String iouDate) {
+<span class="fc" id="L305">        this.iouDate = iouDate;</span>
+<span class="fc" id="L306">    }</span>
+
+    public double getYearlyRate() {
+<span class="fc" id="L309">        return yearlyRate;</span>
+    }
+
+    public void setYearlyRate(double yearlyRate) {
+<span class="fc" id="L313">        this.yearlyRate = yearlyRate;</span>
+<span class="fc" id="L314">    }</span>
+
+    public String getLoanSettleDate() {
+<span class="fc" id="L317">        return loanSettleDate;</span>
+    }
+
+    public void setLoanSettleDate(String loanSettleDate) {
+<span class="fc" id="L321">        this.loanSettleDate = loanSettleDate;</span>
+<span class="fc" id="L322">    }</span>
+
+    public int getRepaymentCount() {
+<span class="fc" id="L325">        return repaymentCount;</span>
+    }
+
+    public void setRepaymentCount(int repaymentCount) {
+<span class="fc" id="L329">        this.repaymentCount = repaymentCount;</span>
+<span class="fc" id="L330">    }</span>
+
+    public double getRepayInterest() {
+<span class="fc" id="L333">        return repayInterest;</span>
+    }
+
+    public void setRepayInterest(double repayInterest) {
+<span class="fc" id="L337">        this.repayInterest = repayInterest;</span>
+<span class="fc" id="L338">    }</span>
+
+    public String getLoanUse() {
+<span class="fc" id="L341">        return loanUse;</span>
+    }
+
+    public void setLoanUse(String loanUse) {
+<span class="fc" id="L345">        this.loanUse = loanUse;</span>
+<span class="fc" id="L346">    }</span>
+
+    public String getBranchNum() {
+<span class="fc" id="L349">        return branchNum;</span>
+    }
+
+    public void setBranchNum(String branchNum) {
+<span class="fc" id="L353">        this.branchNum = branchNum;</span>
+<span class="fc" id="L354">    }</span>
+
+    public String getTransactionCode() {
+<span class="nc" id="L357">        return transactionCode;</span>
+    }
+
+    public void setTransactionCode(String transactionCode) {
+<span class="fc" id="L361">        this.transactionCode = transactionCode;</span>
+<span class="fc" id="L362">    }</span>
+
+    public long getUpdater() {
+<span class="fc" id="L365">        return updater;</span>
+    }
+
+    public void setUpdater(long updater) {
+<span class="fc" id="L369">        this.updater = updater;</span>
+<span class="fc" id="L370">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,8 @@
+使用最新版本的chrome浏览器可能无法运行这些sample code。
+如果遇到此类情况，请打开javascript代码文件，对片段着色器的代码进行修改：
+
+删除如下两行：
+ 
+  '#ifdef GL_ES\n' +
+
+  '#endif GL_ES\n' +
