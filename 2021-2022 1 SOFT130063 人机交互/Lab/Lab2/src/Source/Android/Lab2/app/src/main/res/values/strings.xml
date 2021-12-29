@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lab2</string>
+    <string name="button_name">Select One Photo</string>
+    <string name="image_view_description">Image Shown Here</string>
+    <string name="button_2_name">Share The Photo</string>
+</resources>
