@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="app_main_imgtext">智慧社区</string>
+    <string name="app_home_color">空调管理</string>
+    <string name="app_home_dianti">智慧电梯</string>
+    <string name="app_home_waimai">外卖预约</string>
+</resources>
